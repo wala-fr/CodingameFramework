@@ -7,17 +7,17 @@ import fr.framework.logger.Logger;
 import fr.framework.timeout.TimeoutException;
 import fr.framework.timeout.TimeoutUtils;
 
-public class FindBeamWayCalculator extends Utils {
+public class BeamWaySearcher extends Utils {
 
-  private static Logger logger = Logger.getLogger(FindBeamWayCalculator.class);
+  private static Logger logger = Logger.getLogger(BeamWaySearcher.class);
   
-  private static FindBeamWayCalculator instance = new FindBeamWayCalculator();
+  private static BeamWaySearcher instance = new BeamWaySearcher();
   private int indexStartTimeout;
   private int timeout;
 
-  private FindBeamWayCalculator() {}
+  private BeamWaySearcher() {}
 
-  public static FindBeamWayCalculator getInstance() {
+  public static BeamWaySearcher getInstance() {
     return instance;
   }
 
