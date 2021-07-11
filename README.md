@@ -15,14 +15,14 @@ Here some Java tips that i've learned so far :
 
 * I use mostly __primitives and arrays__ rather than objects. In this project to store a position, i used a byte rather than an object with x and y fields (see [PointUtils](CodingameFramework/src/main/java/fr/framework/PointUtils.java)).
 
-* I almost __don’t use List, Set, Map__... anymore. I have small [utilities](CodingameFramework/src/main/java/fr/framework/list/ByteListUtils.java) to use arrays instead of collections (basically the first element of the array is the number of elements in the "list"). It avoids boxing/unboxing, the creation of "useless" objects (Integer, Byte…), to clear a "list" you only set the first element to 0... Look at [PlaceUtils](CodingameFramework/src/main/java/code/utils/place/PlaceUtils.java) to see a use case example.
+* I almost __don’t use List, Set, Map__... anymore. I have small [utilities](CodingameFramework/src/main/java/fr/framework/list/ByteListUtils.java) to use arrays instead of collections (basically the first element of the array is the number of elements in the "list"). It avoids boxing/unboxing, the creation of "useless" objects (Integer, Byte...), to clear a "list" you only set the first element to 0... Look at [PlaceUtils](CodingameFramework/src/main/java/code/utils/place/PlaceUtils.java) to see a use case example.
 
 * I use __[assertions](CodingameFramework/src/main/java/fr/framework/AssertUtils.java)__ rather than Unit Tests to make sure that there's no bugs/regressions.  
-For example in [Spring Challenge 2021](https://www.codingame.com/multiplayer/bot-programming/spring-challenge-2021) : i kept the state of the game at the beginning of my last turn, then i "guessed" the opponent actions, used my simulation to play my actions and his, and assert the result against the game inputs.
+For example in [Spring Challenge 2021](https://www.codingame.com/multiplayer/bot-programming/spring-challenge-2021) : i kept the state of the game at the beginning of my last turn, then i "guessed" the opponent actions, used my simulation to play my action and his, and compare with assertions the result and the game inputs.
 
 * Create __caches__ ([around positions](CodingameFramework/src/main/java/fr/framework/MapUtils.java), distances...)
  
-* One of the main problem using Java in CodingGame (beside its slowness) is garbage collector timeouts. One way to reduce them is to implements the trick in [GarbageCollectorUtils](CodingameFramework/src/main/java/fr/framework/timeout/GarbageCollectorUtils.java) (see [JVM memory issues](https://www.codingame.com/forum/t/java-jvm-memory-issues/1494)). But mostly you must __avoid creating garbage collectable objects__. For an example, you can look at the [Beam Search](CodingameFramework/src/main/java/code/utils/search/BeamWaySearcher.java) implementation.
+* One of the main problem using Java in CodingGame (beside its slowness) is garbage collector timeouts. One way to reduce them is to implement the trick in [GarbageCollectorUtils](CodingameFramework/src/main/java/fr/framework/timeout/GarbageCollectorUtils.java) (see also [JVM memory issues](https://www.codingame.com/forum/t/java-jvm-memory-issues/1494)). But mostly you must __avoid creating garbage collectable objects__. For an example, you can look at the [Beam Search](CodingameFramework/src/main/java/code/utils/search/BeamWaySearcher.java) implementation.
 
 I'm also beginning to use bitboards (but no java specific tips).  
 Hope it will be helpful.
