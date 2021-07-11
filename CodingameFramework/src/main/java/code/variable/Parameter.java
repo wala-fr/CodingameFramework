@@ -6,7 +6,6 @@ public class Parameter {
   public static final int TIMEOUT = 90;
   public static final int AVOID_TIMEOUT_NB = 2000000;
 
-
   public static final boolean REMOVE_LOG = false;
   public static final boolean REMOVE_ASSERT = false;
   

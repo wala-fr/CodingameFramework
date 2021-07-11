@@ -2,7 +2,7 @@ package code.object;
 
 import java.util.Scanner;
 import fr.framework.logger.Logger;
-import fr.framework.logger.Timer;
+import fr.framework.timer.Timer;
 
 public class Game {
 

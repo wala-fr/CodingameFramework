@@ -1,6 +1,6 @@
 package fr.framework.timeout;
 
-import fr.framework.logger.Timer;
+import fr.framework.timer.Timer;
 
 public class TimeoutUtils {
 

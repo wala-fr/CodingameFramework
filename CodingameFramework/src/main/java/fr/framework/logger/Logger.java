@@ -1,5 +1,7 @@
 package fr.framework.logger;
 
+import fr.framework.timer.Timer;
+
 public class Logger {
   public enum Level {
     DEBUG,
@@ -7,7 +9,7 @@ public class Logger {
     NONE;
   }
 
-  private static Level LEVEL = Level.ERROR;
+  private static final Level LEVEL = Level.ERROR;
   private Level levelSpecific;
 
   private Class<?> clazz;

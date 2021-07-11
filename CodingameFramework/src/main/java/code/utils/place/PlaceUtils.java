@@ -3,20 +3,17 @@ package code.utils.place;
 import fr.framework.FrameworkConstant;
 import fr.framework.MapUtils;
 import fr.framework.list.ByteListUtils;
-import fr.framework.logger.Logger;
 
 public class PlaceUtils {
 
-  private static Logger logger = Logger.getLogger(PlaceUtils.class);
-
   private static final byte[] MAP_CALCULATE = new byte[FrameworkConstant.CASE_NB];
   private static final byte[] RET = new byte[FrameworkConstant.CASE_NB + 1];
-  private static final byte[][] TMP = new byte[2][];
+  private static final byte[][] LISTS = new byte[2][];
   private static final byte DONE = 2;
 
   static {
-    for (int i = 0; i < TMP.length; i++) {
-      TMP[i] = new byte[FrameworkConstant.CASE_NB + 1];
+    for (int i = 0; i < LISTS.length; i++) {
+      LISTS[i] = new byte[FrameworkConstant.CASE_NB + 1];
     }
   }
 
@@ -38,14 +35,14 @@ public class PlaceUtils {
     MAP_CALCULATE[start] = DONE;
     ByteListUtils.add(RET, start);
 
-    byte[] set = TMP[0];
+    byte[] set = LISTS[0];
     ByteListUtils.clear(set);
     ByteListUtils.add(set, start);
 
     int l = 0;
     while (!ByteListUtils.isEmpty(set) && l < limit) {
       l++;
-      byte[] tmp = TMP[l % 2];
+      byte[] tmp = LISTS[l % 2];
       ByteListUtils.clear(tmp);
       int size = ByteListUtils.size(set);
       for (int j = 0; j < size; j++) {

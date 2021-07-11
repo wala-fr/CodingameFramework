@@ -4,11 +4,8 @@ import code.utils.Utils;
 import code.variable.Parameter;
 import fr.framework.MapUtils;
 import fr.framework.PointUtils;
-import fr.framework.logger.Logger;
 
 public class WayUtils extends Utils {
-
-  private static Logger logger = Logger.getLogger(WayUtils.class);
 
   private static int index = 0;
   private static final int SCORE_INDEX = index++;
@@ -95,7 +92,7 @@ public class WayUtils extends Utils {
   }
 
   public static byte calculateScore(byte[] way) {
-    // heuristic...(usually in another class
+    // heuristic...(usually in another class)
     return 0;
   }
 

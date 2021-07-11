@@ -1,10 +1,6 @@
 package code.utils.search;
 
-import fr.framework.logger.Logger;
-
 public class HeapStock {
-
-  private static Logger logger = Logger.getLogger(HeapStock.class);
 
   private static final HeapStock[] CACHE = new HeapStock[2];
 

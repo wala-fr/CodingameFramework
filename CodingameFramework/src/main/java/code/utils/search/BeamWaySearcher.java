@@ -47,7 +47,7 @@ public class BeamWaySearcher extends Utils {
         int length = ways.size();
         for (int j = 0; j < length; j++) {
           if (count >= indexStartTimeout) {
-            // to avoid getting time on the first loops when it's sure there no timeout
+            // to avoid getting time on the first loops when it's sure there"s no timeout
             TimeoutUtils.stopTimeException(timeout);
           }
           byte[] way = ways.getObject(j);
@@ -59,7 +59,7 @@ public class BeamWaySearcher extends Utils {
             byte nextPosition = nextPositions[i];
             nextWay = WayUtils.calculateNextWay(nextPosition, way);
             if (nextWay != null) {
-              // only for the BFS junit test
+              // only for the BFS JUnit test
               if (WayUtils.getLastPosition(nextWay) == endPosition) {
                 return nextWay;
               }

@@ -12,11 +12,12 @@ public class NextMoveUtils extends Utils {
 
   private static Logger logger = Logger.getLogger(NextMoveUtils.class);
 
-  public static void proceed() {}
+  public static void proceed() {
+    // calls to different steps
+  }
 
   /**
    * for demo purpose usually the code would be in the proceed() method
-   * @return 
    */
   public static byte[] proceed(byte startPosition, byte endPosition, byte[] map) {
     GarbageCollectorUtils.initFreeMemory();

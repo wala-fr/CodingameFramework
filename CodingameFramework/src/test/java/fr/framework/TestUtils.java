@@ -8,7 +8,7 @@ import java.util.List;
 import org.powermock.reflect.Whitebox;
 import code.object.Game;
 import fr.framework.logger.Logger;
-import fr.framework.logger.Timer;
+import fr.framework.timer.Timer;
 
 public class TestUtils {
 

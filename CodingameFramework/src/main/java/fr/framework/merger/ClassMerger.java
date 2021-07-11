@@ -13,13 +13,13 @@ import code.variable.Parameter;
 
 public class ClassMerger {
 
-  private static final boolean REMOVE_ASSERT = Parameter.REMOVE_ASSERT;
-  private static final boolean REMOVE_LOG = Parameter.REMOVE_LOG;
-
   private static Path root = Paths.get("src\\main\\java");
+  
+  // to exclude whole package
   private static List<String> excludedPackages = Arrays.asList("fr.framework.merger");
 
-  static List<String> excludedFiles =
+  // to exclude single package (here it could be empty the ClassMerger package is already excluded)
+  private static List<String> excludedFiles =
       Arrays.asList(ClassMerger.class).stream().map(c -> c.getName()).collect(Collectors.toList());
 
   public static void main(String[] args) throws IOException {
@@ -46,7 +46,7 @@ public class ClassMerger {
     files.forEach(ClassMerger::printFileWithoutImports);
   }
 
-  static void printFileWithoutImports(Path p) {
+  private static void printFileWithoutImports(Path p) {
     StringBuilder sb = new StringBuilder();
     try {
       Files.lines(p)
@@ -106,10 +106,10 @@ public class ClassMerger {
           .filter(s -> !s.isEmpty())
           .forEach(s -> sb.append(s.equals("@Override") ? s + " " : (s + "\n")));
       String str = sb.toString();
-      if (REMOVE_ASSERT) {
+      if (Parameter.REMOVE_ASSERT) {
         str = str.replaceAll("AssertUtils\\.test\\([^\\;]+\\;", "");
       }
-      if (REMOVE_LOG) {
+      if (Parameter.REMOVE_LOG) {
         str = str.replaceAll("logger\\.error\\([^\\;]+\\;", "");
       }
       System.out.println(str);

@@ -29,8 +29,6 @@ public class PointUtils {
 
   /**
    * for logging purpose
-   * @param array
-   * @return
    */
   public static List<Point> toPoint(byte[] array) {
     return IntStream.range(0, array.length)
@@ -39,6 +37,9 @@ public class PointUtils {
         .collect(Collectors.toList());
   }
 
+  /**
+   * for logging purpose
+   */
   public static List<Point> toPoint(Collection<Byte> collection) {
     return collection.stream().map(i -> toPoint(i)).collect(Collectors.toList());
   }

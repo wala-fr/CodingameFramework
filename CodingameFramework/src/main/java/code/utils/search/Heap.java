@@ -5,9 +5,8 @@ import java.util.NoSuchElementException;
 import code.variable.Parameter;
 
 /**
- * The element with the lowest score is always at the index 0. It's removed when added an 'object'
- * with a highest score
- * https://en.wikipedia.org/wiki/Heap_(data_structure)
+ * The element with the lowest score is always at the index 0. It's removed when an 'object' with a
+ * highest score is added https://en.wikipedia.org/wiki/Heap_(data_structure)
  */
 public class Heap {
 
@@ -120,7 +119,7 @@ public class Heap {
   public void setLimit(int limit) {
     this.limit = Math.min(limit, MAX_NB);
   }
-  
+
   @Override
   public String toString() {
     return nb + " " + Arrays.toString(Arrays.copyOf(values, nb));

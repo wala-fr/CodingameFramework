@@ -1,4 +1,4 @@
-package fr.framework.logger;
+package fr.framework.timer;
 
 public class Timer {
 

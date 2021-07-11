@@ -2,7 +2,7 @@ package fr.framework.timeout;
 
 import code.variable.Parameter;
 import fr.framework.logger.Logger;
-import fr.framework.logger.Timer;
+import fr.framework.timer.Timer;
 
 public class GarbageCollectorUtils {
 

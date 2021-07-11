@@ -50,7 +50,7 @@ public enum Direction {
     }
   }
 
-  public static Direction fromNum(byte num) {
+  public static Direction fromNum(int num) {
     return numToDirection[num];
   }
 
