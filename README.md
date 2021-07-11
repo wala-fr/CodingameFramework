@@ -18,7 +18,7 @@ Here some Java tips that i've learned so far :
 * I almost __don’t use List, Set, Map__... anymore. I have small [utilities](CodingameFramework/src/main/java/fr/framework/list/ByteListUtils.java) to use arrays instead of collections (basically the first element of the array is the number of elements in the "list"). It avoids boxing/unboxing, the creation of "useless" objects (Integer, Byte...), to clear a "list" you only set the first element to 0... Look at [PlaceUtils](CodingameFramework/src/main/java/code/utils/place/PlaceUtils.java) to see a use case example.
 
 * I use __[assertions](CodingameFramework/src/main/java/fr/framework/AssertUtils.java)__ rather than Unit Tests to make sure that there's no bugs/regressions.  
-For example in [Spring Challenge 2021](https://www.codingame.com/multiplayer/bot-programming/spring-challenge-2021) : i kept the state of the game at the beginning of my last turn, then i "guessed" the opponent actions, used my simulation to play my action and his, and compare with assertions the result and the game inputs.
+For example in [Spring Challenge 2021](https://www.codingame.com/multiplayer/bot-programming/spring-challenge-2021) : i kept the state of the game at the beginning of my last turn, then i "guessed" the opponent actions, used my simulation to play my action and his, and compare (with assertions) the result and the game inputs.
 
 * Create __caches__ ([around positions](CodingameFramework/src/main/java/fr/framework/MapUtils.java), distances...)
  
