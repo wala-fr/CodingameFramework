@@ -2,6 +2,9 @@ package fr.framework;
 
 import java.util.List;
 import fr.framework.logger.Logger;
+import fr.framework.point.Direction;
+import fr.framework.point.DirectionUtils;
+import fr.framework.point.PointUtils;
 
 public class MapUtils {
 
@@ -59,31 +62,32 @@ public class MapUtils {
   }
 
   public static String toString(byte[] map) {
-    String str = "";
+    StringBuilder str = new StringBuilder();
     for (byte j = 0; j < FrameworkConstant.CASE_NB; j++) {
       if (j % FrameworkConstant.WIDTH == 0) {
-        str += "\n";
+        str.append('\n');
       }
       byte v = map[j];
-      String s;
+      char c;
       if (v == FrameworkConstant.WALL) {
-        s = "#";
+        c = '#';
       } else if (v == FrameworkConstant.FREE) {
-        s = ".";
+        c = '.';
       } else {
         if (v >= 10) v = 9;
-        s = "" + v;
+        c = Character.forDigit(v, 10);
       }
-      str += s;
+      str.append(c);
     }
-    return str;
+    return str.toString();
   }
 
   public static byte[] extract(List<String> lines) {
     byte[] map = MapUtils.createNewMap();
     byte i = 0;
-    for (String s : lines) {
-      for (char c : s.toCharArray()) {
+    for (String line : lines) {
+      for (int j = 0; j < line.length(); j++) {
+        char c = line.charAt(j);
         fromInput(c, i, map);
         i++;
       }

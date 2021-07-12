@@ -1,4 +1,4 @@
-package code.utils.search;
+package code.utils.search.heap;
 
 import java.util.Arrays;
 import java.util.NoSuchElementException;
@@ -16,8 +16,11 @@ public class Heap {
   private byte[][] items = new byte[MAX_NB][];
   private double[] values = new double[MAX_NB];
   private int nb;
+  private final int index;
 
-  public Heap() {}
+  public Heap(int index) {
+    this.index = index;
+  }
 
   private void siftUp() {
     int k = nb - 1;
@@ -120,8 +123,12 @@ public class Heap {
     this.limit = Math.min(limit, MAX_NB);
   }
 
+  public int getIndex() {
+    return index;
+  }
+
   @Override
   public String toString() {
-    return nb + " " + Arrays.toString(Arrays.copyOf(values, nb));
+    return "Heap [nb = " + nb + ", " + Arrays.toString(Arrays.copyOf(values, nb)) + "]";
   }
 }

@@ -1,4 +1,4 @@
-package fr.framework;
+package fr.framework.point;
 
 public enum Direction {
   UP(0, -1, 0),

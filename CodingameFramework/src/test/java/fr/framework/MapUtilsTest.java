@@ -4,6 +4,7 @@ import static org.junit.Assert.assertEquals;
 import java.io.IOException;
 import org.junit.Test;
 import fr.framework.logger.Logger;
+import fr.framework.point.PointUtils;
 
 public class MapUtilsTest {
 

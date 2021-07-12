@@ -6,9 +6,9 @@ import java.io.IOException;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import code.variable.Parameter;
-import fr.framework.PointUtils;
 import fr.framework.TestUtils;
 import fr.framework.logger.Logger;
+import fr.framework.point.PointUtils;
 
 public class NextMoveUtilsTest {
 

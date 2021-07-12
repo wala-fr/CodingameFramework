@@ -1,4 +1,4 @@
-package code.utils.search;
+package code.utils.search.way;
 
 import code.variable.Parameter;
 import fr.framework.logger.Logger;

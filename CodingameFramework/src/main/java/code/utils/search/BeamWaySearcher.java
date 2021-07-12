@@ -1,6 +1,11 @@
 package code.utils.search;
 
 import code.utils.Utils;
+import code.utils.search.heap.Heap;
+import code.utils.search.heap.HeapCache;
+import code.utils.search.way.NoMoreWayException;
+import code.utils.search.way.WayCache;
+import code.utils.search.way.WayUtils;
 import code.variable.Parameter;
 import fr.framework.MapUtils;
 import fr.framework.logger.Logger;
@@ -22,35 +27,35 @@ public class BeamWaySearcher extends Utils {
   }
 
   public byte[] findWay(byte startPosition, byte endPosition, byte[] map) {
+    
     WayCache.reset();
     initTimeOut();
-    HeapStock ways = HeapStock.get(0);
+    Heap ways = HeapCache.get(0);
 
     byte[] nextWay = WayUtils.calculateStartWay(map, startPosition);
     if (nextWay == null) {
       // no way (in a wall...)
       return null;
     }
-    ways.add(nextWay, WayUtils.getScore(nextWay));
+    ways.insert(nextWay, WayUtils.getScore(nextWay));
     int count = 0;
-    HeapStock tmpWays = HeapStock.get(1 - ways.getCacheIndex());
     int simNb = 0;
     try {
       while (!ways.isEmpty()) {
         count++;
         if (count >= Parameter.WAY_MAX_LENGTH) {
-          logger.error("TOO LONG");
+          logger.error("TOO LONG", count);
           break;
         }
         logger.error("count", count, ways.size());
-        tmpWays = HeapStock.get(1 - ways.getCacheIndex());
+        Heap tmpWays = HeapCache.get(1 - ways.getIndex());
         int length = ways.size();
         for (int j = 0; j < length; j++) {
           if (count >= indexStartTimeout) {
             // to avoid getting time on the first loops when it's sure there"s no timeout
             TimeoutUtils.stopTimeException(timeout);
           }
-          byte[] way = ways.getObject(j);
+          byte[] way = ways.get(j);
 
           byte[] nextPositions = MapUtils.getAroundPositions(WayUtils.getLastPosition(way));
 
@@ -63,7 +68,7 @@ public class BeamWaySearcher extends Utils {
               if (WayUtils.getLastPosition(nextWay) == endPosition) {
                 return nextWay;
               }
-              tmpWays.add(nextWay, WayUtils.getScore(nextWay));
+              tmpWays.insert(nextWay, WayUtils.getScore(nextWay));
             }
           }
         }
@@ -83,14 +88,14 @@ public class BeamWaySearcher extends Utils {
     indexStartTimeout = Parameter.TIMEOUT_START_INDEX;
   }
 
-  private byte[] chooseBestWay(HeapStock ways) {
+  private byte[] chooseBestWay(Heap ways) {
     int length = ways.size();
     double maxScore = Double.NEGATIVE_INFINITY;
     byte[] bestWay = null;
     for (int j = 0; j < length; j++) {
-      double score = ways.getScore(j);
+      double score = ways.getValue(j);
       if (score > maxScore) {
-        bestWay = ways.getObject(j);
+        bestWay = ways.get(j);
         maxScore = score;
       }
     }

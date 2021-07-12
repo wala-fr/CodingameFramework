@@ -22,8 +22,10 @@ public class Game {
 
   public void update(Scanner in) {
     round++;
+    // read first game input
     Timer.getInstance().init();
     logger.error("round", round);
+    // read next game inputs
    
   }
 

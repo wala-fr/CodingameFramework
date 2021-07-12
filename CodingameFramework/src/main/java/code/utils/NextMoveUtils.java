@@ -1,11 +1,11 @@
 package code.utils;
 
 import code.utils.search.BeamWaySearcher;
-import code.utils.search.WayCache;
-import code.utils.search.WayUtils;
+import code.utils.search.way.WayCache;
+import code.utils.search.way.WayUtils;
 import fr.framework.MapUtils;
-import fr.framework.PointUtils;
 import fr.framework.logger.Logger;
+import fr.framework.point.PointUtils;
 import fr.framework.timeout.GarbageCollectorUtils;
 
 public class NextMoveUtils extends Utils {

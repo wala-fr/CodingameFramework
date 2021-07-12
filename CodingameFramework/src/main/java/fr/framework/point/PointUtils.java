@@ -1,10 +1,11 @@
-package fr.framework;
+package fr.framework.point;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import fr.framework.FrameworkConstant;
 
 public class PointUtils {
 

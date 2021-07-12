@@ -1,4 +1,4 @@
-package fr.framework;
+package fr.framework.point;
 
 public class Point {
 

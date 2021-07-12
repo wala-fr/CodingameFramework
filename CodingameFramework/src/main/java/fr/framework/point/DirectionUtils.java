@@ -1,5 +1,6 @@
-package fr.framework;
+package fr.framework.point;
 
+import fr.framework.FrameworkConstant;
 import fr.framework.logger.Logger;
 
 public class DirectionUtils {
