@@ -1,4 +1,4 @@
-package code.utils.place;
+package fr.code.utils.floodfill;
 
 import fr.framework.FrameworkConstant;
 import fr.framework.MapUtils;

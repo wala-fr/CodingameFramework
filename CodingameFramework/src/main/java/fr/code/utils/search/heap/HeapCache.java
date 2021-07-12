@@ -1,4 +1,4 @@
-package code.utils.search.heap;
+package fr.code.utils.search.heap;
 
 public class HeapCache {
 

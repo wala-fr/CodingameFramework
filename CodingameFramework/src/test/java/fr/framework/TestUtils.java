@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import org.powermock.reflect.Whitebox;
-import code.object.Game;
+import fr.code.object.Game;
 import fr.framework.logger.Logger;
 import fr.framework.timer.Timer;
 

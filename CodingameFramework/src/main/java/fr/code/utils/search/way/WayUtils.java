@@ -1,7 +1,7 @@
-package code.utils.search.way;
+package fr.code.utils.search.way;
 
-import code.utils.Utils;
-import code.variable.Parameter;
+import fr.code.utils.Utils;
+import fr.code.variable.Parameter;
 import fr.framework.MapUtils;
 import fr.framework.point.PointUtils;
 

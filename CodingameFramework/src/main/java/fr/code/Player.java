@@ -1,8 +1,8 @@
-package code;
+package fr.code;
 
 import java.util.Scanner;
-import code.utils.NextMoveUtils;
-import code.utils.Utils;
+import fr.code.utils.NextMoveUtils;
+import fr.code.utils.Utils;
 
 public class Player extends Utils {
 

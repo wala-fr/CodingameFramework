@@ -1,4 +1,4 @@
-package code.utils;
+package fr.code.utils;
 
 import fr.framework.MapUtils;
 import fr.framework.logger.Logger;

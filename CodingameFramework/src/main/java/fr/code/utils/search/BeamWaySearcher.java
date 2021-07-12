@@ -1,12 +1,12 @@
-package code.utils.search;
+package fr.code.utils.search;
 
-import code.utils.Utils;
-import code.utils.search.heap.Heap;
-import code.utils.search.heap.HeapCache;
-import code.utils.search.way.NoMoreWayException;
-import code.utils.search.way.WayCache;
-import code.utils.search.way.WayUtils;
-import code.variable.Parameter;
+import fr.code.utils.Utils;
+import fr.code.utils.search.heap.Heap;
+import fr.code.utils.search.heap.HeapCache;
+import fr.code.utils.search.way.NoMoreWayException;
+import fr.code.utils.search.way.WayCache;
+import fr.code.utils.search.way.WayUtils;
+import fr.code.variable.Parameter;
 import fr.framework.MapUtils;
 import fr.framework.logger.Logger;
 import fr.framework.timeout.TimeoutException;
@@ -15,7 +15,7 @@ import fr.framework.timeout.TimeoutUtils;
 public class BeamWaySearcher extends Utils {
 
   private static Logger logger = Logger.getLogger(BeamWaySearcher.class);
-  
+
   private static BeamWaySearcher instance = new BeamWaySearcher();
   private int indexStartTimeout;
   private int timeout;
@@ -26,8 +26,12 @@ public class BeamWaySearcher extends Utils {
     return instance;
   }
 
+  /**
+   * For a real beam search there wouldn't be an end position. It's only for testing purpose. As it
+   * stands it's more a breadth-first search. In the tests the heap will never be full.
+   */
   public byte[] findWay(byte startPosition, byte endPosition, byte[] map) {
-    
+
     WayCache.reset();
     initTimeOut();
     Heap ways = HeapCache.get(0);
@@ -52,7 +56,8 @@ public class BeamWaySearcher extends Utils {
         int length = ways.size();
         for (int j = 0; j < length; j++) {
           if (count >= indexStartTimeout) {
-            // to avoid getting time on the first loops when it's sure there"s no timeout
+            // to avoid looking up current time on the first loop iterations when it's sure that there will
+            // be no timeout
             TimeoutUtils.stopTimeException(timeout);
           }
           byte[] way = ways.get(j);

@@ -1,13 +1,13 @@
-package code.utils.search.way;
+package fr.code.utils.search.way;
 
-import code.variable.Parameter;
+import fr.code.variable.Parameter;
 import fr.framework.logger.Logger;
 
 public class WayCache {
 
   private static Logger logger = Logger.getLogger(WayCache.class);
 
-  private static byte[][] CACHE = new byte[Parameter.WAY_CACHE_NB][];
+  private static final byte[][] CACHE = new byte[Parameter.WAY_CACHE_NB][];
   private static int maxIndex;
   private static int index;
 

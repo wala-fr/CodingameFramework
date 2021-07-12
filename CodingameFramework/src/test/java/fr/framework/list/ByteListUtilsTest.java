@@ -1,7 +1,6 @@
 package fr.framework.list;
 
 import static org.junit.Assert.assertEquals;
-import java.util.Arrays;
 import org.junit.Test;
 import fr.framework.logger.Logger;
 

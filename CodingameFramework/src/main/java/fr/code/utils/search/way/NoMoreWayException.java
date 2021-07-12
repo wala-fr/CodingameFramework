@@ -1,4 +1,4 @@
-package code.utils.search.way;
+package fr.code.utils.search.way;
 
 public class NoMoreWayException extends RuntimeException {
 

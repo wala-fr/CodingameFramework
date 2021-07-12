@@ -1,4 +1,4 @@
-package code.variable;
+package fr.code.variable;
 
 public class Constant {
 

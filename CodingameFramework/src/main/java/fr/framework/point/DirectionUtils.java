@@ -33,8 +33,9 @@ public class DirectionUtils {
         return Direction.RIGHT;
       case "W":
         return Direction.LEFT;
+      default:
+        throw new IllegalStateException("invalid direction");
     }
-    throw new IllegalStateException("invalid direction");
   }
 
   public static Direction getDirectionTo(byte p1, byte p2) {
@@ -55,8 +56,8 @@ public class DirectionUtils {
         "no direction " + PointUtils.toPoint(p1) + " to " + PointUtils.toPoint(p2));
   }
 
-  public static byte construct(byte index, Direction dir) {
-    return construct(index, dir.getNum());
+  public static byte construct(byte p, Direction dir) {
+    return construct(p, dir.getNum());
   }
 
   public static byte construct(byte p, byte dir) {

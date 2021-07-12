@@ -1,7 +1,8 @@
-package code.utils.search.heap;
+package fr.code.utils.search.heap;
 
 import static org.junit.Assert.assertEquals;
 import org.junit.Test;
+import fr.code.utils.search.heap.Heap;
 import fr.framework.logger.Logger;
 
 public class HeapTest {

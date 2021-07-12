@@ -1,8 +1,8 @@
-package code.utils;
+package fr.code.utils;
 
-import code.utils.search.BeamWaySearcher;
-import code.utils.search.way.WayCache;
-import code.utils.search.way.WayUtils;
+import fr.code.utils.search.BeamWaySearcher;
+import fr.code.utils.search.way.WayCache;
+import fr.code.utils.search.way.WayUtils;
 import fr.framework.MapUtils;
 import fr.framework.logger.Logger;
 import fr.framework.point.PointUtils;

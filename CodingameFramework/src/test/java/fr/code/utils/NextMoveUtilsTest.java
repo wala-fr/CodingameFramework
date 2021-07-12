@@ -1,11 +1,12 @@
-package code.utils;
+package fr.code.utils;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import java.io.IOException;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import code.variable.Parameter;
+import fr.code.utils.NextMoveUtils;
+import fr.code.variable.Parameter;
 import fr.framework.TestUtils;
 import fr.framework.logger.Logger;
 import fr.framework.point.PointUtils;

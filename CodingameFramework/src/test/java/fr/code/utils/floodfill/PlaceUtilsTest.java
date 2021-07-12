@@ -1,8 +1,9 @@
-package code.utils.place;
+package fr.code.utils.floodfill;
 
 import static org.junit.Assert.*;
 import java.io.IOException;
 import org.junit.Test;
+import fr.code.utils.floodfill.PlaceUtils;
 import fr.framework.FrameworkConstant;
 import fr.framework.MapUtils;
 import fr.framework.TestUtils;

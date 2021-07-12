@@ -1,6 +1,6 @@
-package code.utils;
+package fr.code.utils;
 
-import code.object.Game;
+import fr.code.object.Game;
 import fr.framework.logger.Logger;
 
 public class Utils {

@@ -1,8 +1,7 @@
-package code.utils.search.heap;
+package fr.code.utils.search.heap;
 
 import java.util.Arrays;
-import java.util.NoSuchElementException;
-import code.variable.Parameter;
+import fr.code.variable.Parameter;
 
 /**
  * The element with the lowest score is always at the index 0. It's removed when an 'object' with a
@@ -90,7 +89,7 @@ public class Heap {
     }
   }
 
-  public byte[] delete() throws NoSuchElementException {
+  public byte[] delete() {
     byte[] hold = items[0];
     items[0] = items[nb - 1];
     values[0] = values[nb - 1];

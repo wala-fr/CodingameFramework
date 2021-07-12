@@ -1,4 +1,4 @@
-package code.object;
+package fr.code.object;
 
 import java.util.Scanner;
 import fr.framework.logger.Logger;
