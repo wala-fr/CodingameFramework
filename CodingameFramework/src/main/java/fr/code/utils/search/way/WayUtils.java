@@ -10,7 +10,10 @@ public class WayUtils extends Utils {
   private static int index = 0;
   private static final int SCORE_INDEX = index++;
   private static final int WAY_LENGTH_INDEX = index++;
-  private static final int POSITION_START_INDEX = index;
+  private static final int WAY_POSITIONS_START_INDEX = index;
+  // usually there are more fields. We could avoid storing the whole way (only the first position
+  // and bitboards for done positions) or even allow to go through the same position multiple times
+  // (for a real beam search)...
 
   static {
     index += Parameter.WAY_MAX_LENGTH;
@@ -22,9 +25,9 @@ public class WayUtils extends Utils {
     return new byte[LENGTH];
   }
 
-  public static void reset(byte[] ret) {
-    resetLength(ret);
-    setScore(ret, 0);
+  public static void reset(byte[] way) {
+    resetLength(way);
+    setScore(way, 0);
   }
 
   public static byte[] calculateStartWay(byte[] map, byte startPosition) {
@@ -60,7 +63,7 @@ public class WayUtils extends Utils {
   }
 
   public static void setPosition(byte[] way, byte position, int round) {
-    way[POSITION_START_INDEX + round] = position;
+    way[WAY_POSITIONS_START_INDEX + round] = position;
   }
 
   public static byte getLength(byte[] way) {
@@ -68,7 +71,7 @@ public class WayUtils extends Utils {
   }
 
   public static byte getPosition(byte[] way, int round) {
-    return way[round + POSITION_START_INDEX];
+    return way[WAY_POSITIONS_START_INDEX + round];
   }
 
   public static byte getLastPosition(byte[] way) {

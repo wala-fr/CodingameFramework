@@ -29,6 +29,9 @@ public class WayCache {
     }
   }
 
+  /**
+   * to see the max number of used ways, to adjust the cache size
+   */
   public static void printIndex() {
     maxIndex = Math.max(maxIndex, index);
     logger.error("WayCacheIndex=", index, "maxIndex=", maxIndex);

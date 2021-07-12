@@ -27,65 +27,65 @@ public class BeamWaySearcher extends Utils {
   }
 
   /**
-   * For a real beam search there wouldn't be an end position. It's only for testing purpose. As it
+   * For a real beam search there wouldn't be an end position. It's only for testing purposes. As it
    * stands it's more a breadth-first search. In the tests the heap will never be full.
    */
   public byte[] findWay(byte startPosition, byte endPosition, byte[] map) {
 
     WayCache.reset();
     initTimeOut();
-    Heap ways = HeapCache.get(0);
+    Heap currentWays = HeapCache.get(0);
 
-    byte[] nextWay = WayUtils.calculateStartWay(map, startPosition);
-    if (nextWay == null) {
+    byte[] startWay = WayUtils.calculateStartWay(map, startPosition);
+    if (startWay == null) {
       // no way (in a wall...)
       return null;
     }
-    ways.insert(nextWay, WayUtils.getScore(nextWay));
+    currentWays.insert(startWay, WayUtils.getScore(startWay));
     int count = 0;
     int simNb = 0;
     try {
-      while (!ways.isEmpty()) {
+      while (!currentWays.isEmpty()) {
         count++;
         if (count >= Parameter.WAY_MAX_LENGTH) {
           logger.error("TOO LONG", count);
           break;
         }
-        logger.error("count", count, ways.size());
-        Heap tmpWays = HeapCache.get(1 - ways.getIndex());
-        int length = ways.size();
+        logger.error("count =", count, ", heap size =",currentWays.size());
+        Heap nextWays = HeapCache.get(1 - currentWays.getIndex());
+        int length = currentWays.size();
         for (int j = 0; j < length; j++) {
           if (count >= indexStartTimeout) {
             // to avoid looking up current time on the first loop iterations when it's sure that there will
             // be no timeout
             TimeoutUtils.stopTimeException(timeout);
           }
-          byte[] way = ways.get(j);
+          byte[] way = currentWays.get(j);
 
           byte[] nextPositions = MapUtils.getAroundPositions(WayUtils.getLastPosition(way));
 
           for (byte i = 0; i < nextPositions.length; i++) {
             simNb++;
             byte nextPosition = nextPositions[i];
-            nextWay = WayUtils.calculateNextWay(nextPosition, way);
+            byte[] nextWay = WayUtils.calculateNextWay(nextPosition, way);
             if (nextWay != null) {
               // only for the BFS JUnit test
               if (WayUtils.getLastPosition(nextWay) == endPosition) {
                 return nextWay;
               }
-              tmpWays.insert(nextWay, WayUtils.getScore(nextWay));
+              nextWays.insert(nextWay, WayUtils.getScore(nextWay));
             }
           }
         }
-        ways = tmpWays;
+        currentWays = nextWays;
       }
     } catch (NoMoreWayException e) {
       logger.error("NO MORE WAY IN CACHE");
     } catch (TimeoutException e) {
       logger.error("TIME OUT", timeout);
     }
-    logger.error("END count", count, "ways", ways.size(), "simNb", simNb);
-    return chooseBestWay(ways);
+    logger.error("END count = ", count, ", ways =", currentWays.size(), ", simNb =", simNb);
+    return chooseBestWay(currentWays);
   }
 
   private void initTimeOut() {

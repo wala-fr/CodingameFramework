@@ -1,6 +1,5 @@
 package fr.framework;
 
-
 import fr.framework.logger.Logger;
 
 public class AssertUtils {

@@ -9,6 +9,7 @@ public class Logger {
     NONE;
   }
 
+  // set to NONE to desactivate all loggers
   private static final Level LEVEL = Level.ERROR;
   private Level levelSpecific;
 
@@ -38,7 +39,7 @@ public class Logger {
     }
   }
 
-  static StringBuilder sb = new StringBuilder(5000);
+  private static StringBuilder sb = new StringBuilder(5000);
 
   public void print(Object... s) {
     if (getLevel() == Level.NONE) {

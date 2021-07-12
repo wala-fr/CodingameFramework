@@ -6,14 +6,14 @@ import fr.framework.list.ByteListUtils;
 
 public class PlaceUtils {
 
-  private static final byte[] MAP_CALCULATE = new byte[FrameworkConstant.CASE_NB];
-  private static final byte[] RET = new byte[FrameworkConstant.CASE_NB + 1];
-  private static final byte[][] LISTS = new byte[2][];
+  private static final byte[] DONE_MAP = new byte[FrameworkConstant.CASE_NB];
+  private static final byte[] RET_LIST = new byte[FrameworkConstant.CASE_NB + 1];
+  private static final byte[][] TMP_LISTS = new byte[2][];
   private static final byte DONE = 2;
 
   static {
-    for (int i = 0; i < LISTS.length; i++) {
-      LISTS[i] = new byte[FrameworkConstant.CASE_NB + 1];
+    for (int i = 0; i < TMP_LISTS.length; i++) {
+      TMP_LISTS[i] = new byte[FrameworkConstant.CASE_NB + 1];
     }
   }
 
@@ -26,39 +26,39 @@ public class PlaceUtils {
   }
 
   public static byte[] getPlace(byte start, byte[] map, int limit) {
-    ByteListUtils.clear(RET);
+    ByteListUtils.clear(RET_LIST);
     if (!MapUtils.isFree(map, start)) {
-      return RET;
+      return RET_LIST;
     }
 
-    MapUtils.copy(map, MAP_CALCULATE);
-    MAP_CALCULATE[start] = DONE;
-    ByteListUtils.add(RET, start);
+    MapUtils.copy(map, DONE_MAP);
+    DONE_MAP[start] = DONE;
+    ByteListUtils.add(RET_LIST, start);
 
-    byte[] set = LISTS[0];
-    ByteListUtils.clear(set);
-    ByteListUtils.add(set, start);
+    byte[] current = TMP_LISTS[0];
+    ByteListUtils.clear(current);
+    ByteListUtils.add(current, start);
 
     int l = 0;
-    while (!ByteListUtils.isEmpty(set) && l < limit) {
+    while (!ByteListUtils.isEmpty(current) && l < limit) {
       l++;
-      byte[] tmp = LISTS[l % 2];
-      ByteListUtils.clear(tmp);
-      int size = ByteListUtils.size(set);
+      byte[] next = TMP_LISTS[l % 2];
+      ByteListUtils.clear(next);
+      int size = ByteListUtils.size(current);
       for (int j = 0; j < size; j++) {
-        byte p = ByteListUtils.get(set, j);
+        byte p = ByteListUtils.get(current, j);
         byte[] nexts = MapUtils.getAroundPositions(p);
         for (int i = 0; i < nexts.length; i++) {
           byte p2 = nexts[i];
-          if (MapUtils.isFree(MAP_CALCULATE, p2)) {
-            ByteListUtils.add(tmp, p2);
-            MAP_CALCULATE[p2] = DONE;
-            ByteListUtils.add(RET, p2);
+          if (MapUtils.isFree(DONE_MAP, p2)) {
+            ByteListUtils.add(next, p2);
+            DONE_MAP[p2] = DONE;
+            ByteListUtils.add(RET_LIST, p2);
           }
         }
       }
-      set = tmp;
+      current = next;
     }
-    return RET;
+    return RET_LIST;
   }
 }

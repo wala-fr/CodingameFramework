@@ -1,68 +1,65 @@
 package fr.code.utils.search.heap;
 
 import static org.junit.Assert.assertEquals;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import org.junit.Test;
-import fr.code.utils.search.heap.Heap;
 import fr.framework.logger.Logger;
 
 public class HeapTest {
 
   private static Logger logger = Logger.getLogger(HeapTest.class);
+  
+  private Heap heap = new Heap(0);
+
+  // this list contains all the values added to the heap
+  // it's then sorted to assure that the bigger elements have been kept in the heap
+  private List<Double> list = new ArrayList<>();
 
   @Test
-  public void test1() {
+  public void test() {
 
-    Heap heap = new Heap(0);
     heap.setLimit(9);
-    heap.insert(null, 15);
-    heap.insert(null, 12);
-    heap.insert(null, 9);
 
-    heap.insert(null, 10);
-    heap.insert(null, 8);
-    heap.insert(null, 6);
-
-    heap.insert(null, 3);
-    heap.insert(null, 4);
-    heap.insert(null, 2);
-
-    logger.error(heap);
-
-    heap.insert(null, -1);
-    logger.error(heap);
-
-    heap.insert(null, 7);
-    logger.error(heap);
+    insert(15);
+    insert(9);
+    insert(10);
+    insert(8);
+    insert(6);
+    insert(3);
+    insert(4);
+    insert(2);
+    insert(20);
+    insert(30);
+    insert(-1);
+    insert(25);
+    insert(42);
+    insert(-1);
+    insert(-80);
+    insert(200);
+    insert(-10);
   }
 
-  @Test
-  public void test2() {
-
-    Heap heap = new Heap(0);
-    heap.setLimit(9);
-    
-    insert(heap, 15);
-    insert(heap, 9);
-    insert(heap, 10);
-    insert(heap, 8);
-    insert(heap, 6);
-    insert(heap, 3);
-    insert(heap, 4);
-    insert(heap, 2);
-    insert(heap, 20);
-    insert(heap, 30);
-    insert(heap, -1);
-  }
-
-  private double insert(Heap heap, double value) {
+  private void insert(double value) {
     heap.insert(null, value);
+    list.add(value);
+    Collections.sort(list);
+    int minIndex = Math.max(0, list.size() - heap.getLimit());
+    logger.error("minIndex", minIndex);
 
-    double min = Double.MAX_VALUE;
-    for (int i = 0; i < heap.size(); i++) {
-      min = Math.min(heap.getValue(i), min);
-    }
+    double min = list.get(minIndex);
     logger.error("value", value, "min", min, heap);
     assertEquals(min, heap.getValue(0), 0);
-    return min;
+
+    List<Double> tmpList = new ArrayList<>();
+    for (int i = 0; i < heap.size(); i++) {
+      tmpList.add(heap.getValue(i));
+    }
+    Collections.sort(tmpList);
+
+    for (int i = minIndex; i < list.size(); i++) {
+      assertEquals(list.get(i), tmpList.get(i - minIndex), 0);
+    }
   }
 }

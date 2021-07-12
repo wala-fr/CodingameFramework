@@ -2,20 +2,18 @@ package fr.framework;
 
 public class ByteUtils {
 
-  public static byte[] copy(byte[] s) {
-    byte[] d = new byte[s.length];
-    copy(s, d);
-    return d;
+  public static byte[] copy(byte[] array) {
+    return copy(array, array.length);
   }
 
   public static byte[] copy(byte[] array, int length) {
-    byte[] newArray = new byte[length];
-    System.arraycopy(array, 0, newArray, 0, length);
-    return newArray;
+    byte[] ret = new byte[length];
+    System.arraycopy(array, 0, ret, 0, length);
+    return ret;
   }
 
-  public static void copy(byte[] s, byte[] d) {
-    System.arraycopy(s, 0, d, 0, s.length);
+  public static void copy(byte[] source, byte[] destination) {
+    System.arraycopy(source, 0, destination, 0, source.length);
   }
 
 }

@@ -63,11 +63,11 @@ public class MapUtils {
 
   public static String toString(byte[] map) {
     StringBuilder str = new StringBuilder();
-    for (byte j = 0; j < FrameworkConstant.CASE_NB; j++) {
-      if (j % FrameworkConstant.WIDTH == 0) {
+    for (byte p = 0; p < FrameworkConstant.CASE_NB; p++) {
+      if (p % FrameworkConstant.WIDTH == 0) {
         str.append('\n');
       }
-      byte v = map[j];
+      byte v = map[p];
       char c;
       if (v == FrameworkConstant.WALL) {
         c = '#';
@@ -83,13 +83,13 @@ public class MapUtils {
   }
 
   public static byte[] extract(List<String> lines) {
-    byte[] map = MapUtils.createNewMap();
-    byte i = 0;
+    byte[] map = createNewMap();
+    byte lineNum = 0;
     for (String line : lines) {
-      for (int j = 0; j < line.length(); j++) {
-        char c = line.charAt(j);
-        fromInput(c, i, map);
-        i++;
+      for (int x = 0; x < line.length(); x++) {
+        char c = line.charAt(x);
+        fromInput(c, lineNum, map);
+        lineNum++;
       }
     }
     return map;
@@ -97,21 +97,21 @@ public class MapUtils {
 
   public static byte[] extract(String line, int lineNum, byte[] map) {
     int i = lineNum * FrameworkConstant.WIDTH;
-    for (int j = 0; j < FrameworkConstant.WIDTH; j++) {
-      fromInput(line.charAt(j), i + j, map);
+    for (int x = 0; x < FrameworkConstant.WIDTH; x++) {
+      fromInput(line.charAt(x), i + x, map);
     }
     return map;
   }
 
-  public static void fromInput(char c, int i, byte[] map) {
-    byte v = -1;
+  public static void fromInput(char c, int p, byte[] map) {
+    byte v;
     if (c == '#') {
       v = FrameworkConstant.WALL;
     } else if (c == '.') {
       v = FrameworkConstant.FREE;
     } else {
-      throw new IllegalStateException("WRONG CHAR *" + c + "* " + i);
+      throw new IllegalStateException("WRONG CHAR *" + c + "* " + p);
     }
-    map[i] = v;
+    map[p] = v;
   }
 }

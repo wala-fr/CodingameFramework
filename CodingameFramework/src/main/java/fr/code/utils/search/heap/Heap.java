@@ -118,6 +118,10 @@ public class Heap {
     return values[j];
   }
 
+  public int getLimit() {
+    return limit;
+  }
+
   public void setLimit(int limit) {
     this.limit = Math.min(limit, MAX_NB);
   }
