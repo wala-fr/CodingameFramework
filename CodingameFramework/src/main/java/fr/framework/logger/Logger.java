@@ -9,7 +9,7 @@ public class Logger {
     NONE;
   }
 
-  // set to NONE to desactivate all loggers
+  // set to NONE to deactivate all loggers
   private static final Level LEVEL = Level.ERROR;
   private Level levelSpecific;
 

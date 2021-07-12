@@ -21,10 +21,13 @@ public class DirectionUtilsTest {
           int x = PointUtils.getX(p);
           int y = PointUtils.getY(p);
           logger.error(x, y, dir);
-          assertTrue(x == 0 || x == FrameworkConstant.WIDTH - 1 || y == 0 || y == FrameworkConstant.HEIGHT - 1);
+          assertTrue(
+              x == 0
+                  || x == FrameworkConstant.WIDTH - 1
+                  || y == 0
+                  || y == FrameworkConstant.HEIGHT - 1);
         }
       }
-      
     }
   }
 }

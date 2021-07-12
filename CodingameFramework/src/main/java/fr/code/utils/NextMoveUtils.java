@@ -23,7 +23,7 @@ public class NextMoveUtils extends Utils {
     GarbageCollectorUtils.initFreeMemory();
     FirstRoundUtils.proceed(map);
 
-    // for testing purpose the search is not a beam search but a BFS (the heap is never full nad all
+    // for testing purposes the search is not a beam search but a BFS (the heap is never full and all
     // ways have the same score)
     byte[] way =
         BeamWaySearcher.getInstance().findWay(startPosition, endPosition, map);

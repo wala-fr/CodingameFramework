@@ -3,12 +3,12 @@ package fr.code.utils.floodfill;
 import static org.junit.Assert.*;
 import java.io.IOException;
 import org.junit.Test;
-import fr.code.utils.floodfill.PlaceUtils;
 import fr.framework.FrameworkConstant;
 import fr.framework.MapUtils;
 import fr.framework.TestUtils;
 import fr.framework.list.ByteListUtils;
 import fr.framework.logger.Logger;
+import fr.framework.point.PointUtils;
 
 public class PlaceUtilsTest {
 
@@ -20,7 +20,7 @@ public class PlaceUtilsTest {
     MapUtils.initCache(map);
     byte placeNb = 2;
     int[] results = {0, 0, 14, 38, 4, 17};
-    
+
     logger.error("START PLACE TESTS");
     for (byte p = 0; p < FrameworkConstant.CASE_NB; p++) {
       byte[] place = PlaceUtils.getPlace(p, map);
@@ -31,7 +31,7 @@ public class PlaceUtilsTest {
           map[p2] = placeNb;
         }
         assertEquals(results[placeNb], size);
-        logger.error(placeNb, MapUtils.toString(map));
+        logger.error(placeNb, PointUtils.toPoint(p), MapUtils.toString(map));
         placeNb++;
       }
     }

@@ -9,7 +9,7 @@ import fr.framework.FrameworkConstant;
 
 public class PointUtils {
 
-  private static  Point[] pointCache;
+  private static Point[] pointCache;
 
   private static final Point OUT = new Point(-1, -1);
 
@@ -28,9 +28,7 @@ public class PointUtils {
     return ret;
   }
 
-  /**
-   * for logging purpose
-   */
+  /** for logging purpose */
   public static List<Point> toPoint(byte[] array) {
     return IntStream.range(0, array.length)
         .mapToObj(i -> array[i])
@@ -38,11 +36,9 @@ public class PointUtils {
         .collect(Collectors.toList());
   }
 
-  /**
-   * for logging purpose
-   */
+  /** for logging purpose */
   public static List<Point> toPoint(Collection<Byte> collection) {
-    return collection.stream().map(i -> toPoint(i)).collect(Collectors.toList());
+    return collection.stream().map(PointUtils::toPoint).collect(Collectors.toList());
   }
 
   public static byte getPosition(Scanner in) {
