@@ -13,7 +13,6 @@ public class HeapCache {
 
   public static Heap get(int num) {
     Heap ret = CACHE[num];
-    ret.clear();
     return ret;
   }
   

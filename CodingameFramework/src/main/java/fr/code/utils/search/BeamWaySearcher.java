@@ -35,6 +35,7 @@ public class BeamWaySearcher extends Utils {
     WayCache.reset();
     initTimeOut();
     Heap currentWays = HeapCache.get(0);
+    currentWays.clear();
 
     byte[] startWay = WayUtils.calculateStartWay(map, startPosition);
     if (startWay == null) {
@@ -53,6 +54,8 @@ public class BeamWaySearcher extends Utils {
         }
         logger.error("count =", count, ", heap size =",currentWays.size());
         Heap nextWays = HeapCache.get(1 - currentWays.getIndex());
+        nextWays.clear();
+        
         int length = currentWays.size();
         for (int j = 0; j < length; j++) {
           if (count >= indexStartTimeout) {
