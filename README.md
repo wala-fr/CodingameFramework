@@ -11,7 +11,7 @@ Here are some Java tips that i've learned so far :
 
 * Use a __personal [Logger](CodingameFramework/src/main/java/fr/framework/logger/Logger.java)__ printing time elapsed and class name.
 
-* Go back to the source. __Forget about Java 8__ (Stream, Optional...). I even removed foreach loop in UTTT.
+* Go back to the source. __Forget about Java 8__ (Stream, Optional...). I even removed foreach loops in UTTT.
 
 * I use mostly __primitives and arrays__ rather than objects. In this project to store a position, i used a byte rather than an object with x and y fields (see [PointUtils](CodingameFramework/src/main/java/fr/framework/point/PointUtils.java)).
 
@@ -22,9 +22,9 @@ For example in [Spring Challenge 2021](https://www.codingame.com/multiplayer/bot
 
 * Create __caches__ ([around positions](CodingameFramework/src/main/java/fr/framework/MapUtils.java), distances...)
  
-* One of the main problem using Java in CodingGame (beside its slowness) is garbage collector timeouts. One way to reduce them is to implement the trick in [GarbageCollectorUtils](CodingameFramework/src/main/java/fr/framework/timeout/GarbageCollectorUtils.java) (see also [JVM memory issues](https://www.codingame.com/forum/t/java-jvm-memory-issues/1494)). But mostly you must __avoid creating garbage collectable objects__. For an example, you can look at the [Beam Search](CodingameFramework/src/main/java/fr/code/utils/search/BeamWaySearcher.java) implementation.
+* One of the main problems using Java in CodingGame (besides its slowness) is garbage collector timeouts. One way to reduce them is to implement the trick in [GarbageCollectorUtils](CodingameFramework/src/main/java/fr/framework/timeout/GarbageCollectorUtils.java) (see also [JVM memory issues](https://www.codingame.com/forum/t/java-jvm-memory-issues/1494)). But mostly you must __avoid creating garbage collectable objects__. For an example, you can look at the [Beam Search](CodingameFramework/src/main/java/fr/code/utils/search/BeamWaySearcher.java) implementation.
 
-I'm also beginning to use bitboards (but no specific tips for Java).  
+I'm also starting to use bitboards (but no specific tips for Java).  
   
 There an [associated post](https://www.codingame.com/forum) in the Codingame forum.  
 Hope it will be helpful.
