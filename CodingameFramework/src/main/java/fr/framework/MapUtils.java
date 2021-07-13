@@ -49,7 +49,7 @@ public class MapUtils {
 
   private static void calculateAroundPositions(byte p, byte[] map) {
     byte[] ret = new byte[4];
-    Direction[] dirs = Direction.values();
+    Direction[] dirs = Direction.values;
     int index = 0;
     for (int i = 0; i < dirs.length; i++) {
       Direction direction = dirs[i];

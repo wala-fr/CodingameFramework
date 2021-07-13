@@ -47,7 +47,7 @@ public class DirectionUtils {
     if (y != 0) {
       y /= Math.abs(y);
     }
-    for (Direction dir : Direction.values()) {
+    for (Direction dir : Direction.values) {
       if (dir.getX() == x && dir.getY() == y) {
         return dir;
       }

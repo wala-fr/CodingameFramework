@@ -9,13 +9,16 @@ public enum Direction {
   private int x;
   private int y;
 
-  private static Direction[] numToDirection = new Direction[4];
+  private static final Direction[] numToDirection = new Direction[4];
+
+  public static final Direction[] values = new Direction[4];
 
   static {
     Direction[] values = Direction.values();
     for (int i = 0; i < values.length; i++) {
       Direction value = values[i];
       numToDirection[value.getNum()] = value;
+      Direction.values[i] = value;
     }
   }
 
