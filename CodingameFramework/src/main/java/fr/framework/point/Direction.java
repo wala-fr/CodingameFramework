@@ -11,7 +11,7 @@ public enum Direction {
 
   private static final Direction[] numToDirection = new Direction[4];
 
-  // To avoid call to Direction.values() which return a new array at each call
+  // To avoid calling Direction.values() which return a new array at each call
   public static final Direction[] values = new Direction[4];
 
   static {
