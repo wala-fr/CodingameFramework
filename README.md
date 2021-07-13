@@ -26,7 +26,7 @@ For example in [Spring Challenge 2021](https://www.codingame.com/multiplayer/bot
 
 I'm also starting to use bitboards (but no specific tips for Java).  
   
-There an [associated post](https://www.codingame.com/forum) in the Codingame forum.  
+There an [associated post](https://www.codingame.com/forum/t/java-codingame-tips/191870) in the Codingame forum.  
 Hope it will be helpful.
 
 
