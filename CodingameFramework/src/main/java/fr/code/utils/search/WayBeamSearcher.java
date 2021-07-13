@@ -12,17 +12,17 @@ import fr.framework.logger.Logger;
 import fr.framework.timeout.TimeoutException;
 import fr.framework.timeout.TimeoutUtils;
 
-public class BeamWaySearcher extends Utils {
+public class WayBeamSearcher extends Utils {
 
-  private static Logger logger = Logger.getLogger(BeamWaySearcher.class);
+  private static Logger logger = Logger.getLogger(WayBeamSearcher.class);
 
-  private static BeamWaySearcher instance = new BeamWaySearcher();
+  private static WayBeamSearcher instance = new WayBeamSearcher();
   private int indexStartTimeout;
   private int timeout;
 
-  private BeamWaySearcher() {}
+  private WayBeamSearcher() {}
 
-  public static BeamWaySearcher getInstance() {
+  public static WayBeamSearcher getInstance() {
     return instance;
   }
 

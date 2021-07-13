@@ -1,6 +1,6 @@
 package fr.code.utils;
 
-import fr.code.utils.search.BeamWaySearcher;
+import fr.code.utils.search.WayBeamSearcher;
 import fr.code.utils.search.way.WayCache;
 import fr.code.utils.search.way.WayUtils;
 import fr.framework.MapUtils;
@@ -26,7 +26,7 @@ public class NextMoveUtils extends Utils {
     // for testing purposes the search is not a beam search but a BFS (the heap is never full and all
     // ways have the same score)
     byte[] way =
-        BeamWaySearcher.getInstance().findWay(startPosition, endPosition, map);
+        WayBeamSearcher.getInstance().findWay(startPosition, endPosition, map);
     if (way == null) {
       logger.error(
           "NO WAY FROM",
