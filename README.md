@@ -22,7 +22,7 @@ For example in [Spring Challenge 2021](https://www.codingame.com/multiplayer/bot
 
 * Create __caches__ ([around positions](CodingameFramework/src/main/java/fr/framework/MapUtils.java), distances...)
  
-* One of the main problems using Java in CodingGame (besides its slowness) is garbage collector timeouts. One way to reduce them is to implement the trick in [GarbageCollectorUtils](CodingameFramework/src/main/java/fr/framework/timeout/GarbageCollectorUtils.java) (see also [JVM memory issues](https://www.codingame.com/forum/t/java-jvm-memory-issues/1494)). But mostly you must __avoid creating garbage collectable objects__. For an example, you can look at the [Beam Search](CodingameFramework/src/main/java/fr/code/utils/search/BeamWaySearcher.java) implementation.
+* One of the main problems using Java in CodingGame (besides its slowness) is garbage collector timeouts. One way to reduce them is to implement the trick in [GarbageCollectorUtils](CodingameFramework/src/main/java/fr/framework/timeout/GarbageCollectorUtils.java) (see also [JVM memory issues](https://www.codingame.com/forum/t/java-jvm-memory-issues/1494)). But mostly you must __avoid creating garbage collectable objects__. For an example, you can look at the [Beam Search](CodingameFramework/src/main/java/fr/code/utils/search/WayBeamSearcher.java) implementation.
 
 I'm also starting to use bitboards (but no specific tips for Java).  
   
