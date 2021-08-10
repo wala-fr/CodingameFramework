@@ -32,7 +32,7 @@ public class WayUtils extends Utils {
 
   public static byte[] calculateStartWay(byte[] map, byte startPosition) {
     if (MapUtils.isFree(map, startPosition)) {
-      byte[] ret = WayCache.getWay();
+      byte[] ret = WayCache.getNext();
       reset(ret);
       addNextPosition(ret, startPosition);
       setScore(ret, calculateScore(ret));
@@ -52,7 +52,7 @@ public class WayUtils extends Utils {
   }
 
   public static byte[] copy(byte[] way) {
-    byte[] ret = WayCache.getWay();
+    byte[] ret = WayCache.getNext();
     System.arraycopy(way, 0, ret, 0, WAY_LENGTH_INDEX + 1 + getLength(way));
     return ret;
   }
