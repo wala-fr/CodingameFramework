@@ -46,20 +46,21 @@ public class WayBeamSearcher extends Utils {
     int count = 0;
     int simNb = 0;
     try {
-      while (!currentWays.isEmpty()) {
+      while (true) {
         count++;
         if (count >= Parameter.WAY_MAX_LENGTH) {
           logger.error("TOO LONG", count);
           break;
         }
-        logger.error("count =", count, ", heap size =",currentWays.size());
+        logger.error("count =", count, ", heap size =", currentWays.size());
         Heap nextWays = HeapCache.get(1 - currentWays.getIndex());
         nextWays.clear();
-        
+
         int length = currentWays.size();
         for (int j = 0; j < length; j++) {
           if (count >= indexStartTimeout) {
-            // to avoid looking up current time on the first loop iterations when it's sure that there will
+            // to avoid looking up current time on the first loop iterations when it's sure that
+            // there will
             // be no timeout
             TimeoutUtils.stopTimeException(timeout);
           }
@@ -80,6 +81,11 @@ public class WayBeamSearcher extends Utils {
             }
           }
         }
+        //  uncomment to handle properly the end game of a real beam search
+        //        if (nextWays.isEmpty()) {
+        //          logger.error("OVER");
+        //          break;
+        //        }
         currentWays = nextWays;
       }
     } catch (NoMoreWayException e) {
