@@ -6,10 +6,10 @@ import fr.framework.list.ByteListUtils;
 
 public class PlaceUtils {
 
-  private static final byte[] DONE_MAP = new byte[FrameworkConstant.CASE_NB];
+  private static final int[] DONE_MAP = new int[FrameworkConstant.CASE_NB];
   private static final byte[] RET_LIST = new byte[FrameworkConstant.CASE_NB + 1];
   private static final byte[][] TMP_LISTS = new byte[2][];
-  private static final byte DONE = 2;
+  private static int DONE_COUNT = 0;
 
   static {
     for (int i = 0; i < TMP_LISTS.length; i++) {
@@ -31,8 +31,8 @@ public class PlaceUtils {
       return RET_LIST;
     }
 
-    MapUtils.copy(map, DONE_MAP);
-    DONE_MAP[start] = DONE;
+    incrementDoneCount();
+    DONE_MAP[start] = DONE_COUNT;
     ByteListUtils.add(RET_LIST, start);
 
     byte[] current = TMP_LISTS[0];
@@ -50,9 +50,9 @@ public class PlaceUtils {
         byte[] nexts = MapUtils.getAroundPositions(p);
         for (int i = 0; i < nexts.length; i++) {
           byte p2 = nexts[i];
-          if (MapUtils.isFree(DONE_MAP, p2)) {
+          if (DONE_MAP[p2] != DONE_COUNT) {
             ByteListUtils.add(next, p2);
-            DONE_MAP[p2] = DONE;
+            DONE_MAP[p2] = DONE_COUNT;
             ByteListUtils.add(RET_LIST, p2);
           }
         }
@@ -60,5 +60,15 @@ public class PlaceUtils {
       current = next;
     }
     return RET_LIST;
+  }
+  
+  private static void incrementDoneCount() {
+    DONE_COUNT++;
+    if (DONE_COUNT == 0) {
+      for (int i = 0; i < DONE_MAP.length; i++) {
+        DONE_MAP[i] = 0;
+      }
+      DONE_COUNT++;
+    }
   }
 }
