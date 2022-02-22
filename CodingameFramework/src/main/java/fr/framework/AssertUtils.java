@@ -4,7 +4,7 @@ import fr.framework.logger.Logger;
 
 public class AssertUtils {
 
-  private static Logger logger = Logger.getLogger(AssertUtils.class);
+  private static final Logger logger = Logger.getLogger(AssertUtils.class);
 
   public static void test(boolean b, Object... o) {
     if (!b) {

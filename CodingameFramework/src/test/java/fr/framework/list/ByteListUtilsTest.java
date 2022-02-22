@@ -8,11 +8,11 @@ import fr.framework.logger.Logger;
 
 public class ByteListUtilsTest {
 
-  private static Logger logger = Logger.getLogger(ByteListUtilsTest.class);
+  private static final Logger logger = Logger.getLogger(ByteListUtilsTest.class);
   
   @Test
   public void test() {
-    byte[] list = new byte[10];
+    byte[] list = new byte[30];
     ByteListUtils.add(list, (byte) 1); 
     ByteListUtils.add(list, (byte) -1); 
     ByteListUtils.add(list, (byte) 0); 
@@ -49,6 +49,16 @@ public class ByteListUtilsTest {
     
     ByteListUtils.removeByValue(list, (byte) 3);
     size--;
+    assertSize(size, list);
+    
+    ByteListUtils.add(list, (byte) -2); 
+    size++;
+    ByteListUtils.addAll(list, list);
+    size *= 2;
+    assertSize(size, list);
+
+    ByteListUtils.addAll(list, list);
+    size *= 2;
     assertSize(size, list);
   }
   

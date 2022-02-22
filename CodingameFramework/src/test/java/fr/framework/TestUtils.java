@@ -12,7 +12,7 @@ import fr.framework.timer.Timer;
 
 public class TestUtils {
 
-  private static Logger logger = Logger.getLogger(TestUtils.class);
+  private static final Logger logger = Logger.getLogger(TestUtils.class);
 
   private static byte[] map;
 

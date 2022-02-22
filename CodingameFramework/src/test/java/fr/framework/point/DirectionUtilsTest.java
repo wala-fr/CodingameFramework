@@ -8,7 +8,7 @@ import fr.framework.logger.Logger;
 
 public class DirectionUtilsTest {
 
-  private static Logger logger = Logger.getLogger(DirectionUtilsTest.class);
+  private static final Logger logger = Logger.getLogger(DirectionUtilsTest.class);
 
   @Test
   public void test() {

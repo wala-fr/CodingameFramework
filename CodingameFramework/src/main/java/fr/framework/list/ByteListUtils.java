@@ -79,6 +79,11 @@ public class ByteListUtils {
   public static void copy(byte[] source, byte[] destination) {
     System.arraycopy(source, 0, destination, 0, size(source) + 1);
   }
+  
+  public static void addAll(byte[] source, byte[] destination) {
+    System.arraycopy(source, 1, destination, size(destination) + 1, size(source));
+    destination[0] += source[0];
+  }
 
   public static byte getLast(byte[] array) {
     byte size = size(array);

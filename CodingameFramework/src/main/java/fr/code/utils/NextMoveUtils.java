@@ -10,7 +10,7 @@ import fr.framework.timeout.GarbageCollectorUtils;
 
 public class NextMoveUtils extends Utils {
 
-  private static Logger logger = Logger.getLogger(NextMoveUtils.class);
+  private static final Logger logger = Logger.getLogger(NextMoveUtils.class);
 
   public static void proceed() {
     // calls to different steps

@@ -6,7 +6,7 @@ import fr.framework.timer.Timer;
 
 public class GarbageCollectorUtils {
 
-  private static Logger logger = Logger.getLogger(GarbageCollectorUtils.class);
+  private static final Logger logger = Logger.getLogger(GarbageCollectorUtils.class);
 
   private static long start;
 

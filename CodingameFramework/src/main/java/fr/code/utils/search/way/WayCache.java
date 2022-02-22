@@ -5,7 +5,7 @@ import fr.framework.logger.Logger;
 
 public class WayCache {
 
-  private static Logger logger = Logger.getLogger(WayCache.class);
+  private static final Logger logger = Logger.getLogger(WayCache.class);
 
   private static final byte[][] CACHE = new byte[Parameter.WAY_CACHE_NB][];
   private static int maxIndex;

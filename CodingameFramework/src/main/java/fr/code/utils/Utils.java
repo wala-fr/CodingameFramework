@@ -5,7 +5,7 @@ import fr.framework.logger.Logger;
 
 public class Utils {
 
-  private static Logger logger = Logger.getLogger(Utils.class);
+  private static final Logger logger = Logger.getLogger(Utils.class);
 
   protected static Game game = Game.getInstance();
 

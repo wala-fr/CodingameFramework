@@ -6,7 +6,7 @@ import fr.framework.timeout.GarbageCollectorUtils;
 
 public class FirstRoundUtils extends Utils {
 
-  private static Logger logger = Logger.getLogger(FirstRoundUtils.class);
+  private static final Logger logger = Logger.getLogger(FirstRoundUtils.class);
 
   public static void proceed(byte[] map) {
     if (game.isFirstRound()) {

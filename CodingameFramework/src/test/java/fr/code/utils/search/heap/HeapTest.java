@@ -9,7 +9,7 @@ import fr.framework.logger.Logger;
 
 public class HeapTest {
 
-  private static Logger logger = Logger.getLogger(HeapTest.class);
+  private static final Logger logger = Logger.getLogger(HeapTest.class);
   
   private Heap heap = new Heap(0);
 

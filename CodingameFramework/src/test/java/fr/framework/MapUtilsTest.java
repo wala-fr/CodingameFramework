@@ -8,7 +8,7 @@ import fr.framework.point.PointUtils;
 
 public class MapUtilsTest {
 
-  private static Logger logger = Logger.getLogger(MapUtilsTest.class);
+  private static final Logger logger = Logger.getLogger(MapUtilsTest.class);
 
   @Test
   public void test() throws IOException {

@@ -12,7 +12,7 @@ import fr.framework.point.PointUtils;
 
 public class PlaceUtilsTest {
 
-  private static Logger logger = Logger.getLogger(PlaceUtilsTest.class);
+  private static final Logger logger = Logger.getLogger(PlaceUtilsTest.class);
 
   @Test
   public void test() throws IOException {

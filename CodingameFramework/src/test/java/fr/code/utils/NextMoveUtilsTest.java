@@ -13,7 +13,7 @@ import fr.framework.point.PointUtils;
 
 public class NextMoveUtilsTest {
 
-  private static Logger logger = Logger.getLogger(NextMoveUtilsTest.class);
+  private static final Logger logger = Logger.getLogger(NextMoveUtilsTest.class);
 
   private static byte[] map;
   

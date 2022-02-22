@@ -8,7 +8,7 @@ import fr.framework.point.PointUtils;
 
 public class MapUtils {
 
-  private static Logger logger = Logger.getLogger(MapUtils.class);
+  private static final Logger logger = Logger.getLogger(MapUtils.class);
 
   private static byte[][] aroundPositionCache;
 

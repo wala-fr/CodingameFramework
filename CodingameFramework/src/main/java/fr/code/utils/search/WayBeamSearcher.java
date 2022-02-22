@@ -14,7 +14,7 @@ import fr.framework.timeout.TimeoutUtils;
 
 public class WayBeamSearcher extends Utils {
 
-  private static Logger logger = Logger.getLogger(WayBeamSearcher.class);
+  private static final Logger logger = Logger.getLogger(WayBeamSearcher.class);
 
   private static WayBeamSearcher instance = new WayBeamSearcher();
   private int indexStartTimeout;

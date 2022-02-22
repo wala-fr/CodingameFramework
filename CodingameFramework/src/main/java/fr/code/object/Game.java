@@ -6,7 +6,7 @@ import fr.framework.timer.Timer;
 
 public class Game {
 
-  private static Logger logger = Logger.getLogger(Game.class);
+  private static final Logger logger = Logger.getLogger(Game.class);
 
   private static final Game instance = new Game();
 

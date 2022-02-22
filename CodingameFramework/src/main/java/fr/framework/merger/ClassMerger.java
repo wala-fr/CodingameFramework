@@ -58,7 +58,6 @@ public class ClassMerger {
           .map(s -> s.replaceAll("public enum ", "enum "))
           .map(s -> s.replaceAll("public interface ", "interface "))
           .map(s -> s.replaceAll("public abstract ", "abstract "))
-          //          .map(s -> s.replaceAll(" final ", " "))
           .map( // to remove useless spaces
               s ->
                   s.replaceAll(" == ", "==")

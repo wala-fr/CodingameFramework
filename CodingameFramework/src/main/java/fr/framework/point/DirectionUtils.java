@@ -5,7 +5,7 @@ import fr.framework.logger.Logger;
 
 public class DirectionUtils {
 
-  private static Logger logger = Logger.getLogger(DirectionUtils.class);
+  private static final Logger logger = Logger.getLogger(DirectionUtils.class);
 
   public static String toString(Direction dir) {
     if (dir == null) {
