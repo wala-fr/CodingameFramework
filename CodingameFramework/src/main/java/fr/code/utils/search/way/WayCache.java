@@ -26,7 +26,7 @@ public class WayCache {
       index++;
       return ret;
     } catch (IndexOutOfBoundsException e) {
-      throw new NoMoreWayException();
+      throw NoMoreWayException.EXCEPTION;
     }
   }
 
