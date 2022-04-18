@@ -16,4 +16,9 @@ public class HeapCache {
     return ret;
   }
   
+  public static void setLimit(int limit) {
+    CACHE[0].setLimit(limit);
+    CACHE[1].setLimit(limit);
+  }
+  
 }

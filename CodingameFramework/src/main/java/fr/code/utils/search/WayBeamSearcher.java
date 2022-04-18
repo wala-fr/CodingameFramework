@@ -55,10 +55,10 @@ public class WayBeamSearcher extends Utils {
         logger.error("count =", count, ", heap size =", currentWays.size());
         Heap nextWays = HeapCache.get(1 - currentWays.getIndex());
         nextWays.clear();
-
+        boolean testTimeout = count >= indexStartTimeout;
         int length = currentWays.size();
         for (int j = 0; j < length; j++) {
-          if (count >= indexStartTimeout) {
+          if (testTimeout) {
             // to avoid looking up current time on the first loop iterations when it's sure that
             // there will
             // be no timeout
