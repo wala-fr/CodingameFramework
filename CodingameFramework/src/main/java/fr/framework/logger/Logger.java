@@ -39,7 +39,7 @@ public class Logger {
     }
   }
 
-  private static StringBuilder sb = new StringBuilder(5000);
+  private static final StringBuilder sb = new StringBuilder(5000);
 
   public void print(Object... s) {
     if (getLevel() == Level.NONE) {
