@@ -185,4 +185,15 @@ public class WayUtils extends Utils {
     sb.append(getScore(way));
     return sb.toString();
   }
+
+  public static String toMapString(byte[] way) {
+    if (way == null) {
+      return null;
+    }
+    byte[] map = MapUtils.createNewMap();
+    for (int p = 0; p < map.length; p++) {
+      map[p] = (byte) (isDonePosition(way, p) ? FrameworkConstant.WALL : FrameworkConstant.FREE);
+    }
+    return MapUtils.toString(map);
+  }
 }

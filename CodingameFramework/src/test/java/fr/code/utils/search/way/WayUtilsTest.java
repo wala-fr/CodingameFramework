@@ -6,8 +6,11 @@ import static org.junit.Assert.assertTrue;
 import java.util.Random;
 import org.junit.Test;
 import fr.framework.FrameworkConstant;
+import fr.framework.logger.Logger;
 
 public class WayUtilsTest {
+
+  private static final Logger logger = Logger.getLogger(WayUtilsTest.class);
 
   @Test
   public void test1() {
@@ -26,8 +29,8 @@ public class WayUtilsTest {
     for (int i = 0; i < FrameworkConstant.CASE_NB; i++) {
       assertFalse(WayUtils.isDonePosition(way, i));
       WayUtils.setDonePosition(way, i);
-      ;
       assertTrue(WayUtils.isDonePosition(way, i));
+      logger.error(WayUtils.toMapString(way));
     }
   }
 }
