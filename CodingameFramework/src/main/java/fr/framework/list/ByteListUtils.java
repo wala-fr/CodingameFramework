@@ -4,10 +4,7 @@ import java.util.Arrays;
 import fr.framework.AssertUtils;
 import fr.framework.function.BytePredicate;
 
-/**
- * copy/paste for IntListUtils, ShortListUtils...
- *
- */
+/** copy/paste for IntListUtils, ShortListUtils... */
 public class ByteListUtils {
 
   public static void add(byte[] array, byte p) {
@@ -17,7 +14,7 @@ public class ByteListUtils {
 
   public static void removeByValue(byte[] array, byte p) {
     boolean remove = false;
-    for (byte i = 0; i < size(array); i++) {
+    for (int i = 0; i < size(array); i++) {
       byte value = get(array, i);
       if (remove) {
         set(array, (byte) (i - 1), value);
@@ -32,7 +29,7 @@ public class ByteListUtils {
 
   public static void removeByIndex(byte[] array, int index) {
     boolean remove = size(array) > index;
-    for (byte i = (byte) (index + 1); i < size(array); i++) {
+    for (int i = index + 1; i < size(array); i++) {
       byte value = get(array, i);
       set(array, (byte) (i - 1), value);
     }
@@ -45,7 +42,7 @@ public class ByteListUtils {
     array[0] = 0;
   }
 
-  public static byte size(byte[] array) {
+  public static int size(byte[] array) {
     return array[0];
   }
 
@@ -57,12 +54,12 @@ public class ByteListUtils {
     return array[i + 1];
   }
 
-  public static void set(byte[] array, byte i, byte newValue) {
+  public static void set(byte[] array, int i, byte newValue) {
     array[i + 1] = newValue;
   }
 
   public static boolean contains(byte[] array, byte i) {
-    for (byte j = 0; j < size(array); j++) {
+    for (int j = 0; j < size(array); j++) {
       if (get(array, j) == i) {
         return true;
       }
@@ -79,23 +76,23 @@ public class ByteListUtils {
   public static void copy(byte[] source, byte[] destination) {
     System.arraycopy(source, 0, destination, 0, size(source) + 1);
   }
-  
+
   public static void addAll(byte[] source, byte[] destination) {
     System.arraycopy(source, 1, destination, size(destination) + 1, size(source));
     destination[0] += source[0];
   }
 
   public static byte getLast(byte[] array) {
-    byte size = size(array);
+    int size = size(array);
     AssertUtils.test(size > 0, "EMPTY BYTE LIST");
-    return get(array, (byte) (size - 1));
+    return get(array, size - 1);
   }
 
   public static void removeIf(byte[] array, BytePredicate pred) {
-    byte size = size(array);
-    byte index = 1;
-    byte newSize = size;
-    for (byte j = 0; j < size; j++) {
+    int size = size(array);
+    int index = 1;
+    int newSize = size;
+    for (int j = 0; j < size; j++) {
       byte p = get(array, j);
       if (pred.test(p)) {
         newSize--;
@@ -103,13 +100,13 @@ public class ByteListUtils {
         array[index++] = p;
       }
     }
-    array[0] = newSize;
+    array[0] = (byte) newSize;
   }
 
-  public static byte count(byte[] array, BytePredicate pred) {
-    byte size = size(array);
-    byte count = 0;
-    for (byte j = 0; j < size; j++) {
+  public static int count(byte[] array, BytePredicate pred) {
+    int size = size(array);
+    int count = 0;
+    for (int j = 0; j < size; j++) {
       byte p = get(array, j);
       if (pred.test(p)) {
         count++;
@@ -121,5 +118,4 @@ public class ByteListUtils {
   public static String toString(byte[] array) {
     return Arrays.toString(cut(array));
   }
-
 }

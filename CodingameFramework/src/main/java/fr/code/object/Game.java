@@ -26,7 +26,7 @@ public class Game {
     Timer.getInstance().init();
     logger.error("round", round);
     // read next game inputs
-   
+
   }
 
   public boolean isFirstRound() {

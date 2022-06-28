@@ -37,9 +37,7 @@ public class GarbageCollectorUtils {
     start = Runtime.getRuntime().freeMemory();
   }
 
-  /**
-   * to check if garbage collectable objects are created during each round
-   */
+  /** to check if garbage collectable objects are created during each round */
   public static void printUsedMemory() {
     logger.error("GARBAGE COLECTOR", Runtime.getRuntime().freeMemory() - start);
   }

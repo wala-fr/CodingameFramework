@@ -14,7 +14,7 @@ public class DirectionUtilsTest {
   public void test() {
     for (byte p = 0; p < FrameworkConstant.CASE_NB; p++) {
       for (Direction dir : Direction.values()) {
-        byte nextPosition = DirectionUtils.construct(p, dir);
+        int nextPosition = DirectionUtils.construct(p, dir);
         if (nextPosition != FrameworkConstant.OUT) {
           assertEquals(dir, DirectionUtils.getDirectionTo(p, nextPosition));
         } else {

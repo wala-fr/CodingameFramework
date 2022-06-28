@@ -2,24 +2,37 @@ package fr.code.utils.search.way;
 
 import fr.code.utils.Utils;
 import fr.code.variable.Parameter;
+import fr.framework.AssertUtils;
+import fr.framework.FrameworkConstant;
 import fr.framework.MapUtils;
 import fr.framework.point.PointUtils;
 
 public class WayUtils extends Utils {
 
   private static int index = 0;
-  private static final int SCORE_INDEX = index++;
-  private static final int WAY_LENGTH_INDEX = index++;
-  private static final int WAY_POSITIONS_START_INDEX = index;
-  // usually there are more fields. We could avoid storing the whole way (only the first position
-  // and bitboards for done positions) or even allow to go through the same position multiple times
-  // (for a real beam search)...
+  private static final int SCORE_INDEX = index;
 
   static {
-    index += Parameter.WAY_MAX_LENGTH;
+    index += 8;
+  }
+
+  private static final int MAP_INDEX = index;
+  private static final int BIT_NB = 8;
+
+  static {
+    index += Math.ceil(FrameworkConstant.CASE_NB / (double) BIT_NB);
+  }
+
+  private static final int WAY_LENGTH_INDEX = index++;
+  private static final int WAY_POSITIONS_START_INDEX = index;
+
+  static {
+    index += Parameter.WAY_SAVE_LENGTH;
   }
 
   private static final int LENGTH = index;
+  // usually there are more fields.
+  // We could allow to go through the same position multiple times (for a real beam search)...
 
   public static byte[] constructWay() {
     return new byte[LENGTH];
@@ -30,7 +43,7 @@ public class WayUtils extends Utils {
     setScore(way, 0);
   }
 
-  public static byte[] calculateStartWay(byte[] map, byte startPosition) {
+  public static byte[] calculateStartWay(byte[] map, int startPosition) {
     if (MapUtils.isFree(map, startPosition)) {
       byte[] ret = WayCache.getNext();
       reset(ret);
@@ -41,8 +54,9 @@ public class WayUtils extends Utils {
     return null;
   }
 
-  public static byte[] calculateNextWay(byte nextPosition, byte[] way) {
-    if (contains(way, nextPosition)) {
+  public static byte[] calculateNextWay(byte[] way, int nextPosition) {
+    if (isDonePosition(way, nextPosition)) {
+      // if you don't allow going back
       return null;
     }
     byte[] ret = copy(way);
@@ -53,29 +67,46 @@ public class WayUtils extends Utils {
 
   public static byte[] copy(byte[] way) {
     byte[] ret = WayCache.getNext();
-    System.arraycopy(way, 0, ret, 0, WAY_LENGTH_INDEX + 1 + getLength(way));
+    System.arraycopy(way, 0, ret, 0, WAY_LENGTH_INDEX + 1 + getLastPositionIndex(way));
     return ret;
   }
 
-  private static void addNextPosition(byte[] way, byte newPosition) {
+  private static void addNextPosition(byte[] way, int newPosition) {
     setPosition(way, newPosition, getLength(way));
     incrementLength(way);
   }
 
-  public static void setPosition(byte[] way, byte position, int round) {
-    way[WAY_POSITIONS_START_INDEX + round] = position;
+  public static void setPosition(byte[] way, int position, int round) {
+    int index = getPositionIndex(way, round);
+    setField(way, WAY_POSITIONS_START_INDEX + index, position);
+    setDonePosition(way, position);
   }
 
-  public static byte getLength(byte[] way) {
-    return way[WAY_LENGTH_INDEX];
+  public static int getLength(byte[] way) {
+    return getField(way, WAY_LENGTH_INDEX);
   }
 
-  public static byte getPosition(byte[] way, int round) {
-    return way[WAY_POSITIONS_START_INDEX + round];
+  public static int getPosition(byte[] way, int round) {
+    if (round < 0) {
+      return FrameworkConstant.OUT;
+    }
+    int index = getPositionIndex(way, round);
+    return getField(way, WAY_POSITIONS_START_INDEX + index);
   }
 
-  public static byte getLastPosition(byte[] way) {
-    return getPosition(way, getLength(way) - 1);
+  private static int getLastPositionIndex(byte[] way) {
+    return getPositionIndex(way, getLength(way) - 1);
+  }
+
+  private static int getPositionIndex(byte[] way, int round) {
+    if (round >= Parameter.WAY_SAVE_LENGTH) {
+      return Parameter.WAY_SAVE_LENGTH - 1;
+    }
+    return round;
+  }
+
+  public static int getLastPosition(byte[] way) {
+    return getPosition(way, getLastPositionIndex(way));
   }
 
   private static void incrementLength(byte[] way) {
@@ -83,23 +114,50 @@ public class WayUtils extends Utils {
   }
 
   private static void resetLength(byte[] way) {
-    way[WAY_LENGTH_INDEX] = 0;
+    setField(way, WAY_LENGTH_INDEX, 0);
   }
 
-  public static byte getScore(byte[] way) {
-    return way[SCORE_INDEX];
+  public static void setDonePosition(byte[] way, int position) {
+    way[MAP_INDEX + position / BIT_NB] |= 1 << (position % BIT_NB);
   }
 
-  public static void setScore(byte[] way, int score) {
-    way[SCORE_INDEX] = (byte) score;
+  public static boolean isDonePosition(byte[] way, int position) {
+    return (way[MAP_INDEX + position / BIT_NB] & (1 << (position % BIT_NB))) != 0;
   }
 
-  public static byte calculateScore(byte[] way) {
+  public static void setScore(byte[] way, double dblValue) {
+    long l = Double.doubleToLongBits(dblValue);
+    for (int i = 7; i >= 0; i--) {
+      setField(way, SCORE_INDEX + i, (byte) l & 0xFF);
+      l >>= 8;
+    }
+    double tmp = getScore(way);
+    AssertUtils.test(dblValue == tmp, tmp, dblValue);
+  }
+
+  public static double getScore(byte[] way) {
+    long result = 0;
+    for (int i = 0; i < 8; i++) {
+      result <<= 8;
+      result |= (getField(way, SCORE_INDEX + i) & 0xFF);
+    }
+    return Double.longBitsToDouble(result);
+  }
+
+  private static int getField(byte[] way, int index) {
+    return way[index];
+  }
+
+  private static void setField(byte[] way, int index, int value) {
+    way[index] = (byte) value;
+  }
+
+  public static double calculateScore(byte[] way) {
     // heuristic...(usually in another class)
     return 0;
   }
 
-  public static boolean contains(byte[] way, byte p) {
+  public static boolean contains(byte[] way, int p) {
     for (int i = 0; i < getLength(way); i++) {
       if (p == getPosition(way, i)) {
         return true;
@@ -109,11 +167,14 @@ public class WayUtils extends Utils {
   }
 
   public static String toString(byte[] way) {
+    if (way == null) {
+      return null;
+    }
     StringBuilder sb = new StringBuilder();
     sb.append('[');
     sb.append(getLength(way));
     sb.append(',').append(' ');
-    for (int i = 0; i < getLength(way); i++) {
+    for (int i = 0; i <= getLastPositionIndex(way); i++) {
       if (i > 0) {
         sb.append(',').append(' ');
       }

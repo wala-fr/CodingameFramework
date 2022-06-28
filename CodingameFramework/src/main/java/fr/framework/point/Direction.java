@@ -5,7 +5,7 @@ public enum Direction {
   DOWN(0, 1, 1),
   LEFT(-1, 0, 2),
   RIGHT(1, 0, 3);
-  private byte num;
+  private int num;
   private int x;
   private int y;
 
@@ -26,10 +26,10 @@ public enum Direction {
   private Direction(int x, int y, int num) {
     this.x = x;
     this.y = y;
-    this.num = (byte) num;
+    this.num = num;
   }
 
-  public byte getNum() {
+  public int getNum() {
     return num;
   }
 
@@ -58,7 +58,7 @@ public enum Direction {
     return numToDirection[num];
   }
 
-  public boolean is(byte num) {
+  public boolean is(int num) {
     return num == this.num;
   }
 }

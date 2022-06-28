@@ -17,7 +17,7 @@ public class MapUtilsTest {
 
     MapUtils.initCache(map);
 
-    byte position = PointUtils.getPosition(2, 0);
+    int position = PointUtils.getPosition(2, 0);
     byte[] aroundPositions = MapUtils.getAroundPositions(position);
     logger.error(
         PointUtils.toPoint(position), "around positions", PointUtils.toPoint(aroundPositions));

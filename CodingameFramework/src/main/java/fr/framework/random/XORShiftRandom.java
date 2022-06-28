@@ -3,8 +3,11 @@ package fr.framework.random;
 import java.util.Random;
 
 /**
- * @see <a href="https://www.javamex.com/tutorials/random_numbers/xorshift.shtml">Javamex XORShift random number generators</a>
- * @see <a href="https://github.com/apache/flink/blob/master/flink-core/src/main/java/org/apache/flink/util/XORShiftRandom.java">Apache XORShiftRandom.java</a>
+ * @see <a href="https://www.javamex.com/tutorials/random_numbers/xorshift.shtml">Javamex XORShift
+ *     random number generators</a>
+ * @see <a
+ *     href="https://github.com/apache/flink/blob/master/flink-core/src/main/java/org/apache/flink/util/XORShiftRandom.java">Apache
+ *     XORShiftRandom.java</a>
  */
 public class XORShiftRandom extends Random {
 

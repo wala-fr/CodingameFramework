@@ -12,7 +12,7 @@ public class MapUtils {
 
   private static byte[][] aroundPositionCache;
 
-  public static boolean isFree(byte[] map, byte p) {
+  public static boolean isFree(byte[] map, int p) {
     return map[p] == FrameworkConstant.FREE;
   }
 
@@ -28,18 +28,18 @@ public class MapUtils {
     return new byte[FrameworkConstant.CASE_NB];
   }
 
-  public static int getNbAroundPositions(byte p) {
+  public static int getNbAroundPositions(int p) {
     return getAroundPositions(p).length;
   }
 
-  public static byte[] getAroundPositions(byte p) {
+  public static byte[] getAroundPositions(int p) {
     return aroundPositionCache[p];
   }
 
   public static void initCache(byte[] map) {
     logger.error("INIT CACHE START");
     aroundPositionCache = new byte[FrameworkConstant.CASE_NB][];
-    for (byte p = 0; p < FrameworkConstant.CASE_NB; p++) {
+    for (int p = 0; p < FrameworkConstant.CASE_NB; p++) {
       if (isFree(map, p)) {
         calculateAroundPositions(p, map);
       }
@@ -47,15 +47,15 @@ public class MapUtils {
     logger.error("INIT CACHE END");
   }
 
-  private static void calculateAroundPositions(byte p, byte[] map) {
+  private static void calculateAroundPositions(int p, byte[] map) {
     byte[] ret = new byte[4];
     Direction[] dirs = Direction.values;
     int index = 0;
     for (int i = 0; i < dirs.length; i++) {
       Direction direction = dirs[i];
-      byte p2 = DirectionUtils.construct(p, direction);
+      int p2 = DirectionUtils.construct(p, direction);
       if (PointUtils.isIn(p2) && isFree(map, p2)) {
-        ret[index++] = p2;
+        ret[index++] = (byte) p2;
       }
     }
     aroundPositionCache[p] = ByteUtils.copy(ret, index);
@@ -63,11 +63,11 @@ public class MapUtils {
 
   public static String toString(byte[] map) {
     StringBuilder str = new StringBuilder();
-    for (byte p = 0; p < FrameworkConstant.CASE_NB; p++) {
+    for (int p = 0; p < FrameworkConstant.CASE_NB; p++) {
       if (p % FrameworkConstant.WIDTH == 0) {
         str.append('\n');
       }
-      byte v = map[p];
+      int v = map[p];
       char c;
       if (v == FrameworkConstant.WALL) {
         c = '#';
@@ -84,7 +84,7 @@ public class MapUtils {
 
   public static byte[] extract(List<String> lines) {
     byte[] map = createNewMap();
-    byte lineNum = 0;
+    int lineNum = 0;
     for (String line : lines) {
       for (int x = 0; x < line.length(); x++) {
         char c = line.charAt(x);
@@ -104,7 +104,7 @@ public class MapUtils {
   }
 
   public static void fromInput(char c, int p, byte[] map) {
-    byte v;
+    int v;
     if (c == '#') {
       v = FrameworkConstant.WALL;
     } else if (c == '.') {
@@ -112,6 +112,6 @@ public class MapUtils {
     } else {
       throw new IllegalStateException("WRONG CHAR *" + c + "* " + p);
     }
-    map[p] = v;
+    map[p] = (byte) v;
   }
 }

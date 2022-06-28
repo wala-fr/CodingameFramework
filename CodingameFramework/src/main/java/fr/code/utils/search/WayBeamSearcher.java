@@ -30,7 +30,7 @@ public class WayBeamSearcher extends Utils {
    * For a real beam search there wouldn't be an end position. It's only for testing purposes. As it
    * stands it's more a breadth-first search. In the tests the heap will never be full.
    */
-  public byte[] findWay(byte startPosition, byte endPosition, byte[] map) {
+  public byte[] findWay(int startPosition, int endPosition, byte[] map) {
 
     WayCache.reset();
     initTimeOut();
@@ -48,7 +48,7 @@ public class WayBeamSearcher extends Utils {
     try {
       while (true) {
         count++;
-        if (count >= Parameter.WAY_MAX_LENGTH) {
+        if (count >= Parameter.BEAM_MAX_DEPTH) {
           logger.error("TOO LONG", count);
           break;
         }
@@ -68,10 +68,10 @@ public class WayBeamSearcher extends Utils {
 
           byte[] nextPositions = MapUtils.getAroundPositions(WayUtils.getLastPosition(way));
 
-          for (byte i = 0; i < nextPositions.length; i++) {
+          for (int i = 0; i < nextPositions.length; i++) {
             simNb++;
-            byte nextPosition = nextPositions[i];
-            byte[] nextWay = WayUtils.calculateNextWay(nextPosition, way);
+            int nextPosition = nextPositions[i];
+            byte[] nextWay = WayUtils.calculateNextWay(way, nextPosition);
             if (nextWay != null) {
               // only for the BFS JUnit test
               if (WayUtils.getLastPosition(nextWay) == endPosition) {

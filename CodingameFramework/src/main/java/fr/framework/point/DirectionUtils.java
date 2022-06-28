@@ -38,7 +38,7 @@ public class DirectionUtils {
     }
   }
 
-  public static Direction getDirectionTo(byte p1, byte p2) {
+  public static Direction getDirectionTo(int p1, int p2) {
     int x = PointUtils.getX(p2) - PointUtils.getX(p1);
     if (x != 0) {
       x /= Math.abs(x);
@@ -56,11 +56,11 @@ public class DirectionUtils {
         "no direction " + PointUtils.toPoint(p1) + " to " + PointUtils.toPoint(p2));
   }
 
-  public static byte construct(byte p, Direction dir) {
+  public static int construct(int p, Direction dir) {
     return construct(p, dir.getNum());
   }
 
-  public static byte construct(byte p, byte dir) {
+  public static int construct(int p, int dir) {
     if (Direction.DOWN.is(dir)) {
       if (PointUtils.getY(p) == FrameworkConstant.HEIGHT - 1) {
         p = FrameworkConstant.OUT;

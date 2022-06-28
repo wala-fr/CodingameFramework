@@ -14,7 +14,7 @@ import fr.code.variable.Parameter;
 public class ClassMerger {
 
   private static Path root = Paths.get("src\\main\\java");
-  
+
   // to exclude whole package
   private static List<String> excludedPackages = Arrays.asList("fr.framework.merger");
 

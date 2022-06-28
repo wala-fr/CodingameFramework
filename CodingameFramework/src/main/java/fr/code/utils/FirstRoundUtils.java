@@ -14,5 +14,5 @@ public class FirstRoundUtils extends Utils {
       MapUtils.initCache(map);
       GarbageCollectorUtils.avoidTimeOut();
     }
-  } 
+  }
 }

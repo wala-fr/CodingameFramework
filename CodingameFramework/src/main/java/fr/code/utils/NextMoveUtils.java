@@ -16,23 +16,17 @@ public class NextMoveUtils extends Utils {
     // calls to different steps
   }
 
-  /**
-   * for demo purpose usually the code would be in the proceed() method
-   */
-  public static byte[] proceed(byte startPosition, byte endPosition, byte[] map) {
+  /** for demo purpose usually the code would be in the proceed() method */
+  public static byte[] proceed(int startPosition, int endPosition, byte[] map) {
     GarbageCollectorUtils.initFreeMemory();
     FirstRoundUtils.proceed(map);
 
-    // for testing purposes the search is not a beam search but a BFS (the heap is never full and all
-    // ways have the same score)
-    byte[] way =
-        WayBeamSearcher.getInstance().findWay(startPosition, endPosition, map);
+    // for testing purposes the search is not a beam search but a BFS (the heap is never full and
+    // all ways have the same score)
+    byte[] way = WayBeamSearcher.getInstance().findWay(startPosition, endPosition, map);
     if (way == null) {
       logger.error(
-          "NO WAY FROM",
-          PointUtils.toPoint(startPosition),
-          "TO",
-          PointUtils.toPoint(endPosition));
+          "NO WAY FROM", PointUtils.toPoint(startPosition), "TO", PointUtils.toPoint(endPosition));
     } else {
       logger.error(WayUtils.toString(way));
       byte[] tmpMap = MapUtils.copy(map);

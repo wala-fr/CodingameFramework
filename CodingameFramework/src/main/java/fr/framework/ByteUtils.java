@@ -15,5 +15,4 @@ public class ByteUtils {
   public static void copy(byte[] source, byte[] destination) {
     System.arraycopy(source, 0, destination, 0, source.length);
   }
-
 }

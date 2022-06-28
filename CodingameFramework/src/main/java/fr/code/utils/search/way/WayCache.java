@@ -30,9 +30,7 @@ public class WayCache {
     }
   }
 
-  /**
-   * to see the max number of used ways, to adjust the cache size
-   */
+  /** to see the max number of used ways, to adjust the cache size */
   public static void printIndex() {
     logger.error("WayCacheIndex=", index, "maxIndex=", maxIndex);
   }

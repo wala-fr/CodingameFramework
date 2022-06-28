@@ -61,7 +61,7 @@ public class PlaceUtils {
     }
     return RET_LIST;
   }
-  
+
   private static void incrementDoneCount() {
     DONE_COUNT++;
     if (DONE_COUNT == 0) {

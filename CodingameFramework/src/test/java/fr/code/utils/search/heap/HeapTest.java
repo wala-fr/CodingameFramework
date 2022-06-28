@@ -10,7 +10,7 @@ import fr.framework.logger.Logger;
 public class HeapTest {
 
   private static final Logger logger = Logger.getLogger(HeapTest.class);
-  
+
   private Heap heap = new Heap(0);
 
   // this list contains all the values added to the heap
