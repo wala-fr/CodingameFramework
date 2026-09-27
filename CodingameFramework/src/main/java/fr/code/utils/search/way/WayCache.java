@@ -16,7 +16,7 @@ public class WayCache {
     index = 0;
   }
 
-  public static byte[] getNext() throws NoMoreWayException {
+  public static byte[] next() throws NoMoreWayException {
     try {
       byte[] ret = CACHE[index];
       if (ret == null) {

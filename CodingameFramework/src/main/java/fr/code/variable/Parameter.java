@@ -11,6 +11,8 @@ public class Parameter {
 
   public static final int BEAM_NB = 500;
   public static final int WAY_CACHE_NB = 70_000;
+  public static final int WAY_QUEUE_CACHE_NB = 2 * BEAM_NB + 2;
+
   public static int BEAM_MAX_DEPTH = 20;
 
   public static int WAY_SAVE_LENGTH = 3;

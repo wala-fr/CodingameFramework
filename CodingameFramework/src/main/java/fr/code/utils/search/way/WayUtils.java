@@ -16,6 +16,7 @@ public class WayUtils extends Utils {
     index += 8;
   }
 
+  // the bitboarded map to store the already visited positions
   private static final int MAP_INDEX = index;
   private static final int BIT_NB = 8;
 
@@ -45,7 +46,7 @@ public class WayUtils extends Utils {
 
   public static byte[] calculateStartWay(byte[] map, int startPosition) {
     if (MapUtils.isFree(map, startPosition)) {
-      byte[] ret = WayCache.getNext();
+      byte[] ret = WayQueueCache.next();
       reset(ret);
       addNextPosition(ret, startPosition);
       setScore(ret, calculateScore(ret));
@@ -66,7 +67,7 @@ public class WayUtils extends Utils {
   }
 
   public static byte[] copy(byte[] way) {
-    byte[] ret = WayCache.getNext();
+    byte[] ret = WayQueueCache.next();
     System.arraycopy(way, 0, ret, 0, WAY_LENGTH_INDEX + 1 + getLastPositionIndex(way));
     return ret;
   }

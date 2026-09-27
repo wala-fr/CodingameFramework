@@ -1,11 +1,10 @@
 package fr.framework.random;
 
-import java.util.Random;
+import java.util.SplittableRandom;
 
 public class RandomUtils {
 
-  // can switch to new Random() also
-  private static Random random = new XORShiftRandom();
+  private static final SplittableRandom random = new SplittableRandom();
 
   /** return random int i : 0 <= i < nb */
   public static int chooseRandom(int nb) {

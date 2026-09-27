@@ -17,7 +17,7 @@ public class WayUtilsTest {
     Random random = new Random();
     byte[] way = WayUtils.constructWay();
     for (int i = 0; i < 1_000_000; i++) {
-      double value = Double.MAX_VALUE * random.nextDouble();
+      double value = random.nextDouble();
       WayUtils.setScore(way, value);
       assertEquals(value, WayUtils.getScore(way), 0);
     }

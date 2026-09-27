@@ -35,6 +35,7 @@ public class NextMoveUtils extends Utils {
       }
       logger.error(MapUtils.toString(tmpMap));
     }
+    // in case we use a classic cache (not the queue one)
     WayCache.printIndex();
     GarbageCollectorUtils.printUsedMemory();
     return way;

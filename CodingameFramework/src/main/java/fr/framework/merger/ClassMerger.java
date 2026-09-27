@@ -103,15 +103,22 @@ public class ClassMerger {
           .map(s -> s.trim())
           .filter(s -> !s.startsWith("//")) // remove comments
           .filter(s -> !s.isEmpty())
-          .forEach(s -> sb.append(s.equals("@Override") ? s + " " : (s + "\n")));
+          .map(s -> s.equals("@Override") ? s + " " : s)
+          .map(s -> s.endsWith("{") ? s + "\n" : s)
+          .map(s -> s.endsWith("}") ? s + "\n" : s)
+          .map(s -> s.endsWith(";") ? s +  "\n" : s)
+          .forEach(s -> sb.append(s));
       String str = sb.toString();
+      str = str.replaceAll("/\\*(.|\\n)*?\\*/", "");
       if (Parameter.REMOVE_ASSERT) {
-        str = str.replaceAll("AssertUtils\\.test\\([^\\;]+\\;", "");
+        str = str.replaceAll("\nAssertUtils\\.test(.+?)\\;", "");
       }
       if (Parameter.REMOVE_LOG) {
-        str = str.replaceAll("logger\\.error\\([^\\;]+\\;", "");
+        str = str.replaceAll("\nlogger\\.error(.+?)\\;", "");
+        str = str.replaceAll("\n(.+)Logger\\.getLogger(.+?)\\;", "");
+        str = str.replaceAll("\nclass Logger(.|\n)+?class}", "class");
       }
-      System.out.println(str);
+      System.out.print(str);
     } catch (IOException e) {
     }
   }

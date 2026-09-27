@@ -1,10 +1,10 @@
 package fr.code.utils.search;
 
-import fr.code.utils.Utils;
+import fr.code.object.Game;
 import fr.code.utils.search.heap.Heap;
 import fr.code.utils.search.heap.HeapCache;
 import fr.code.utils.search.way.NoMoreWayException;
-import fr.code.utils.search.way.WayCache;
+import fr.code.utils.search.way.WayQueueCache;
 import fr.code.utils.search.way.WayUtils;
 import fr.code.variable.Parameter;
 import fr.framework.MapUtils;
@@ -12,7 +12,7 @@ import fr.framework.logger.Logger;
 import fr.framework.timeout.TimeoutException;
 import fr.framework.timeout.TimeoutUtils;
 
-public class WayBeamSearcher extends Utils {
+public class WayBeamSearcher {
 
   private static final Logger logger = Logger.getLogger(WayBeamSearcher.class);
 
@@ -32,7 +32,7 @@ public class WayBeamSearcher extends Utils {
    */
   public byte[] findWay(int startPosition, int endPosition, byte[] map) {
 
-    WayCache.reset();
+    WayQueueCache.reset();
     initTimeOut();
     Heap currentWays = HeapCache.get(0);
     currentWays.clear();
@@ -80,6 +80,9 @@ public class WayBeamSearcher extends Utils {
               nextWays.insert(nextWay, WayUtils.getScore(nextWay));
             }
           }
+          // put back the old way in the cache
+          WayQueueCache.put(way);
+          
         }
         //  uncomment to handle properly the end game of a real beam search
         //        if (nextWays.isEmpty()) {
@@ -98,7 +101,7 @@ public class WayBeamSearcher extends Utils {
   }
 
   private void initTimeOut() {
-    timeout = game.isFirstRound() ? Parameter.TIMEOUT_FIRST_ROUND : Parameter.TIMEOUT;
+    timeout = Game.getInstance().isFirstRound() ? Parameter.TIMEOUT_FIRST_ROUND : Parameter.TIMEOUT;
     indexStartTimeout = Parameter.TIMEOUT_START_INDEX;
   }
 

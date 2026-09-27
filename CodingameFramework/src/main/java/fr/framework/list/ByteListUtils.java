@@ -1,14 +1,28 @@
 package fr.framework.list;
 
 import java.util.Arrays;
+import java.util.function.IntToDoubleFunction;
 import fr.framework.AssertUtils;
 import fr.framework.function.BytePredicate;
+import fr.framework.random.RandomUtils;
 
 /** copy/paste for IntListUtils, ShortListUtils... */
 public class ByteListUtils {
 
   public static void add(byte[] array, byte p) {
     array[size(array) + 1] = p;
+    array[0]++;
+  }
+  
+  public static void add(byte[] array, byte p, int index) {
+    int s = size(array);
+    if (index > s) {
+      throw new IndexOutOfBoundsException();
+    }
+    for (int i = s - 1; i >= index; i--) {
+      array[i + 2] = array[i + 1];
+    }
+    array[index + 1] = p;
     array[0]++;
   }
 
@@ -113,6 +127,25 @@ public class ByteListUtils {
       }
     }
     return count;
+  }
+  
+  public static void sort(byte[] array, IntToDoubleFunction func) {
+    int n = size(array) + 1;
+    for (int i1 = 1; i1 < n - 1; i1++) {
+      for (int i2 = 1; i2 < n - i1; i2++) {
+        double v1 = func.applyAsDouble(array[i2]);
+        double v2 = func.applyAsDouble(array[i2 + 1]);
+        if (v1 > v2) {
+          byte temp = array[i2];
+          array[i2] = array[i2 + 1];
+          array[i2 + 1] = temp;
+        }
+      }
+    }
+  }
+  
+  public static int random(byte[] array) {
+    return get(array, RandomUtils.chooseRandom(size(array)));
   }
 
   public static String toString(byte[] array) {

@@ -1,6 +1,7 @@
 package fr.code.utils.search.heap;
 
 import java.util.Arrays;
+import fr.code.utils.search.way.WayQueueCache;
 import fr.code.variable.Parameter;
 
 /**
@@ -12,8 +13,8 @@ public class Heap {
   private static final int MAX_NB = Parameter.BEAM_NB;
 
   private int limit = MAX_NB;
-  private byte[][] items = new byte[MAX_NB][];
-  private double[] values = new double[MAX_NB];
+  private final byte[][] items = new byte[MAX_NB][];
+  private final double[] values = new double[MAX_NB];
   private int nb;
   private final int index;
 
@@ -59,6 +60,8 @@ public class Heap {
       values[nb] = value;
       nb++;
       siftUp();
+    } else {
+      WayQueueCache.put(item);
     }
   }
 
@@ -95,6 +98,7 @@ public class Heap {
     values[0] = values[nb - 1];
     nb--;
     siftDown();
+    WayQueueCache.put(hold);
     return hold;
   }
 
